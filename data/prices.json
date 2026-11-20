@@ -1,0 +1,2096 @@
+{
+  "app": "Ebnely",
+  "app_ar": "ابنيلي",
+  "currency": "ج.م",
+  "updated_at": "2026-11-20",
+  "note": "أسعار تقريبية استرشادية — آخر تحديث 2026-11-20",
+  "categories": [
+    {
+      "id": "plaster",
+      "name": "محارة",
+      "icon": "🏗️",
+      "description": "تأسيس المحارة والبياض الداخلي والخارجي",
+      "order": 1
+    },
+    {
+      "id": "plumbing",
+      "name": "سباكة",
+      "icon": "🚿",
+      "description": "تأسيس وتركيب السباكة للحمامات والمطابخ",
+      "order": 2
+    },
+    {
+      "id": "electricity",
+      "name": "كهرباء",
+      "icon": "💡",
+      "description": "تأسيس وتركيب الكهرباء والإضاءة",
+      "order": 3
+    },
+    {
+      "id": "painting",
+      "name": "نقاشة ودهانات",
+      "icon": "🎨",
+      "description": "معجون ودهانات وتشطيب الحوائط",
+      "order": 4
+    },
+    {
+      "id": "ceramic",
+      "name": "سيراميك وبورسلين",
+      "icon": "🧱",
+      "description": "تركيب سيراميك وبورسلين أرضيات وحوائط",
+      "order": 5
+    },
+    {
+      "id": "marble",
+      "name": "رخام وجرانيت",
+      "icon": "🪨",
+      "description": "تركيب رخام وجرانيت للأرضيات والمطابخ والدرج",
+      "order": 6
+    },
+    {
+      "id": "gypsum",
+      "name": "جبس بورد وأسقف",
+      "icon": "⬜",
+      "description": "أسقف جبس بورد وديكورات وإضاءة مخفية",
+      "order": 7
+    },
+    {
+      "id": "carpentry",
+      "name": "نجارة وأبواب",
+      "icon": "🚪",
+      "description": "أبواب خشب ونجارة داخلية",
+      "order": 8
+    },
+    {
+      "id": "alumetal",
+      "name": "ألوميتال وشبابيك",
+      "icon": "🪟",
+      "description": "شبابيك وأبواب ألوميتال وواجهات",
+      "order": 9
+    },
+    {
+      "id": "insulation",
+      "name": "عزل (مائي/حراري)",
+      "icon": "🛡️",
+      "description": "عزل مائي وحراري للحمامات والأسطح",
+      "order": 10
+    },
+    {
+      "id": "ac",
+      "name": "تكييف وتأسيس",
+      "icon": "❄️",
+      "description": "تأسيس وتركيب التكييفات",
+      "order": 11
+    },
+    {
+      "id": "kitchens",
+      "name": "مطابخ",
+      "icon": "🍳",
+      "description": "تشطيب وتركيب المطابخ",
+      "order": 12
+    },
+    {
+      "id": "bathrooms",
+      "name": "حمامات",
+      "icon": "🛁",
+      "description": "تشطيب الحمامات كاملة",
+      "order": 13
+    },
+    {
+      "id": "facades",
+      "name": "واجهات",
+      "icon": "🏠",
+      "description": "تشطيب واجهات العمارات والفيلات",
+      "order": 14
+    },
+    {
+      "id": "demolition",
+      "name": "هدم ونقل مخلفات",
+      "icon": "🔨",
+      "description": "هدم وتكسير ونقل مخلفات",
+      "order": 15
+    }
+  ],
+  "items": [
+    {
+      "id": "item-01",
+      "category": "plaster",
+      "name": "محارة داخلية",
+      "description": "محارة داخلية للحوائط والأسقف بؤج وأوتار",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 65,
+          "material_max": 83,
+          "labor_min": 43,
+          "labor_max": 55,
+          "total_min": 108,
+          "total_max": 138
+        },
+        "medium": {
+          "material_min": 94,
+          "material_max": 120,
+          "labor_min": 63,
+          "labor_max": 80,
+          "total_min": 157,
+          "total_max": 200
+        },
+        "lux": {
+          "material_min": 136,
+          "material_max": 174,
+          "labor_min": 91,
+          "labor_max": 116,
+          "total_min": 227,
+          "total_max": 290
+        },
+        "super_lux": {
+          "material_min": 188,
+          "material_max": 240,
+          "labor_min": 125,
+          "labor_max": 160,
+          "total_min": 313,
+          "total_max": 400
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-02",
+      "category": "plaster",
+      "name": "محارة خارجية",
+      "description": "محارة خارجية مقاومة للعوامل الجوية",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 97,
+          "material_max": 124,
+          "labor_min": 65,
+          "labor_max": 83,
+          "total_min": 162,
+          "total_max": 207
+        },
+        "medium": {
+          "material_min": 141,
+          "material_max": 180,
+          "labor_min": 94,
+          "labor_max": 120,
+          "total_min": 235,
+          "total_max": 300
+        },
+        "lux": {
+          "material_min": 204,
+          "material_max": 261,
+          "labor_min": 136,
+          "labor_max": 174,
+          "total_min": 340,
+          "total_max": 435
+        },
+        "super_lux": {
+          "material_min": 282,
+          "material_max": 360,
+          "labor_min": 188,
+          "labor_max": 240,
+          "total_min": 470,
+          "total_max": 600
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-03",
+      "category": "plaster",
+      "name": "محارة سقف",
+      "description": "محارة أسقف وتسوية",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 76,
+          "material_max": 97,
+          "labor_min": 50,
+          "labor_max": 64,
+          "total_min": 126,
+          "total_max": 161
+        },
+        "medium": {
+          "material_min": 110,
+          "material_max": 140,
+          "labor_min": 73,
+          "labor_max": 93,
+          "total_min": 183,
+          "total_max": 233
+        },
+        "lux": {
+          "material_min": 159,
+          "material_max": 203,
+          "labor_min": 106,
+          "labor_max": 135,
+          "total_min": 265,
+          "total_max": 338
+        },
+        "super_lux": {
+          "material_min": 219,
+          "material_max": 280,
+          "labor_min": 146,
+          "labor_max": 187,
+          "total_min": 365,
+          "total_max": 467
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-04",
+      "category": "plumbing",
+      "name": "تأسيس سباكة حمام",
+      "description": "تأسيس مواسير حمام كامل سخن وبارد وصرف",
+      "unit": "مقطوعية",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 4590,
+          "material_max": 5865,
+          "labor_min": 3060,
+          "labor_max": 3910,
+          "total_min": 7650,
+          "total_max": 9775
+        },
+        "medium": {
+          "material_min": 6655,
+          "material_max": 8504,
+          "labor_min": 4437,
+          "labor_max": 5670,
+          "total_min": 11092,
+          "total_max": 14174
+        },
+        "lux": {
+          "material_min": 9639,
+          "material_max": 12317,
+          "labor_min": 6426,
+          "labor_max": 8211,
+          "total_min": 16065,
+          "total_max": 20528
+        },
+        "super_lux": {
+          "material_min": 13311,
+          "material_max": 17008,
+          "labor_min": 8874,
+          "labor_max": 11339,
+          "total_min": 22185,
+          "total_max": 28347
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-05",
+      "category": "plumbing",
+      "name": "تأسيس سباكة مطبخ",
+      "description": "تأسيس مواسير مطبخ سخن وبارد وصرف",
+      "unit": "مقطوعية",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 2970,
+          "material_max": 3795,
+          "labor_min": 1980,
+          "labor_max": 2530,
+          "total_min": 4950,
+          "total_max": 6325
+        },
+        "medium": {
+          "material_min": 4307,
+          "material_max": 5503,
+          "labor_min": 2871,
+          "labor_max": 3668,
+          "total_min": 7178,
+          "total_max": 9171
+        },
+        "lux": {
+          "material_min": 6237,
+          "material_max": 7969,
+          "labor_min": 4158,
+          "labor_max": 5313,
+          "total_min": 10395,
+          "total_max": 13282
+        },
+        "super_lux": {
+          "material_min": 8613,
+          "material_max": 11005,
+          "labor_min": 5742,
+          "labor_max": 7337,
+          "total_min": 14355,
+          "total_max": 18342
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-06",
+      "category": "plumbing",
+      "name": "تركيب خلاطات وأطقم",
+      "description": "تركيب خلاطات وأطقم حمام ومطبخ",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 648,
+          "material_max": 828,
+          "labor_min": 432,
+          "labor_max": 552,
+          "total_min": 1080,
+          "total_max": 1380
+        },
+        "medium": {
+          "material_min": 940,
+          "material_max": 1201,
+          "labor_min": 626,
+          "labor_max": 800,
+          "total_min": 1566,
+          "total_max": 2001
+        },
+        "lux": {
+          "material_min": 1361,
+          "material_max": 1739,
+          "labor_min": 907,
+          "labor_max": 1159,
+          "total_min": 2268,
+          "total_max": 2898
+        },
+        "super_lux": {
+          "material_min": 1879,
+          "material_max": 2401,
+          "labor_min": 1253,
+          "labor_max": 1601,
+          "total_min": 3132,
+          "total_max": 4002
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-07",
+      "category": "electricity",
+      "name": "تأسيس كهرباء (نقطة)",
+      "description": "تأسيس نقطة كهرباء شامل مواسير وأسلاك",
+      "unit": "نقطة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 243,
+          "material_max": 311,
+          "labor_min": 162,
+          "labor_max": 207,
+          "total_min": 405,
+          "total_max": 518
+        },
+        "medium": {
+          "material_min": 352,
+          "material_max": 450,
+          "labor_min": 235,
+          "labor_max": 300,
+          "total_min": 587,
+          "total_max": 750
+        },
+        "lux": {
+          "material_min": 510,
+          "material_max": 652,
+          "labor_min": 340,
+          "labor_max": 435,
+          "total_min": 850,
+          "total_max": 1087
+        },
+        "super_lux": {
+          "material_min": 704,
+          "material_max": 901,
+          "labor_min": 470,
+          "labor_max": 600,
+          "total_min": 1174,
+          "total_max": 1501
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-08",
+      "category": "electricity",
+      "name": "لوحة توزيع رئيسية",
+      "description": "تركيب لوحة توزيع وقواطع",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 3510,
+          "material_max": 4485,
+          "labor_min": 2340,
+          "labor_max": 2990,
+          "total_min": 5850,
+          "total_max": 7475
+        },
+        "medium": {
+          "material_min": 5089,
+          "material_max": 6503,
+          "labor_min": 3393,
+          "labor_max": 4336,
+          "total_min": 8482,
+          "total_max": 10839
+        },
+        "lux": {
+          "material_min": 7371,
+          "material_max": 9418,
+          "labor_min": 4914,
+          "labor_max": 6279,
+          "total_min": 12285,
+          "total_max": 15697
+        },
+        "super_lux": {
+          "material_min": 10179,
+          "material_max": 13007,
+          "labor_min": 6786,
+          "labor_max": 8671,
+          "total_min": 16965,
+          "total_max": 21678
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-09",
+      "category": "electricity",
+      "name": "تركيب إضاءة وسبوتات",
+      "description": "تركيب سبوتات وإضاءة مخفية",
+      "unit": "نقطة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 189,
+          "material_max": 241,
+          "labor_min": 126,
+          "labor_max": 161,
+          "total_min": 315,
+          "total_max": 402
+        },
+        "medium": {
+          "material_min": 274,
+          "material_max": 350,
+          "labor_min": 183,
+          "labor_max": 234,
+          "total_min": 457,
+          "total_max": 584
+        },
+        "lux": {
+          "material_min": 397,
+          "material_max": 507,
+          "labor_min": 265,
+          "labor_max": 338,
+          "total_min": 662,
+          "total_max": 845
+        },
+        "super_lux": {
+          "material_min": 548,
+          "material_max": 700,
+          "labor_min": 366,
+          "labor_max": 467,
+          "total_min": 914,
+          "total_max": 1167
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-10",
+      "category": "painting",
+      "name": "معجون ودهان",
+      "description": "معجون 3 سكاكين + دهان بلاستيك",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 52,
+          "material_max": 65,
+          "labor_min": 34,
+          "labor_max": 44,
+          "total_min": 86,
+          "total_max": 109
+        },
+        "medium": {
+          "material_min": 74,
+          "material_max": 95,
+          "labor_min": 50,
+          "labor_max": 63,
+          "total_min": 124,
+          "total_max": 158
+        },
+        "lux": {
+          "material_min": 108,
+          "material_max": 137,
+          "labor_min": 72,
+          "labor_max": 92,
+          "total_min": 180,
+          "total_max": 229
+        },
+        "super_lux": {
+          "material_min": 149,
+          "material_max": 190,
+          "labor_min": 99,
+          "labor_max": 127,
+          "total_min": 248,
+          "total_max": 317
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-11",
+      "category": "painting",
+      "name": "دهان بلاستيك",
+      "description": "دهان بلاستيك وجهين بدون معجون",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 30,
+          "material_max": 38,
+          "labor_min": 20,
+          "labor_max": 25,
+          "total_min": 50,
+          "total_max": 63
+        },
+        "medium": {
+          "material_min": 43,
+          "material_max": 55,
+          "labor_min": 29,
+          "labor_max": 37,
+          "total_min": 72,
+          "total_max": 92
+        },
+        "lux": {
+          "material_min": 62,
+          "material_max": 80,
+          "labor_min": 42,
+          "labor_max": 53,
+          "total_min": 104,
+          "total_max": 133
+        },
+        "super_lux": {
+          "material_min": 86,
+          "material_max": 110,
+          "labor_min": 58,
+          "labor_max": 73,
+          "total_min": 144,
+          "total_max": 183
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-12",
+      "category": "painting",
+      "name": "ورق حائط / ديكور",
+      "description": "تركيب ورق حائط أو دهان ديكوري",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 119,
+          "material_max": 152,
+          "labor_min": 79,
+          "labor_max": 101,
+          "total_min": 198,
+          "total_max": 253
+        },
+        "medium": {
+          "material_min": 172,
+          "material_max": 220,
+          "labor_min": 115,
+          "labor_max": 147,
+          "total_min": 287,
+          "total_max": 367
+        },
+        "lux": {
+          "material_min": 250,
+          "material_max": 319,
+          "labor_min": 166,
+          "labor_max": 212,
+          "total_min": 416,
+          "total_max": 531
+        },
+        "super_lux": {
+          "material_min": 344,
+          "material_max": 440,
+          "labor_min": 230,
+          "labor_max": 294,
+          "total_min": 574,
+          "total_max": 734
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-13",
+      "category": "ceramic",
+      "name": "تركيب سيراميك أرضيات",
+      "description": "تركيب سيراميك أرضيات شامل مونة",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 97,
+          "material_max": 124,
+          "labor_min": 65,
+          "labor_max": 83,
+          "total_min": 162,
+          "total_max": 207
+        },
+        "medium": {
+          "material_min": 141,
+          "material_max": 180,
+          "labor_min": 94,
+          "labor_max": 120,
+          "total_min": 235,
+          "total_max": 300
+        },
+        "lux": {
+          "material_min": 204,
+          "material_max": 261,
+          "labor_min": 136,
+          "labor_max": 174,
+          "total_min": 340,
+          "total_max": 435
+        },
+        "super_lux": {
+          "material_min": 282,
+          "material_max": 360,
+          "labor_min": 188,
+          "labor_max": 240,
+          "total_min": 470,
+          "total_max": 600
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-14",
+      "category": "ceramic",
+      "name": "تركيب بورسلين",
+      "description": "تركيب بورسلين أرضيات",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 151,
+          "material_max": 193,
+          "labor_min": 101,
+          "labor_max": 129,
+          "total_min": 252,
+          "total_max": 322
+        },
+        "medium": {
+          "material_min": 219,
+          "material_max": 280,
+          "labor_min": 146,
+          "labor_max": 187,
+          "total_min": 365,
+          "total_max": 467
+        },
+        "lux": {
+          "material_min": 317,
+          "material_max": 406,
+          "labor_min": 212,
+          "labor_max": 270,
+          "total_min": 529,
+          "total_max": 676
+        },
+        "super_lux": {
+          "material_min": 439,
+          "material_max": 560,
+          "labor_min": 292,
+          "labor_max": 374,
+          "total_min": 731,
+          "total_max": 934
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-15",
+      "category": "ceramic",
+      "name": "سيراميك حوائط حمام/مطبخ",
+      "description": "تركيب سيراميك حوائط",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 108,
+          "material_max": 138,
+          "labor_min": 72,
+          "labor_max": 92,
+          "total_min": 180,
+          "total_max": 230
+        },
+        "medium": {
+          "material_min": 157,
+          "material_max": 200,
+          "labor_min": 104,
+          "labor_max": 134,
+          "total_min": 261,
+          "total_max": 334
+        },
+        "lux": {
+          "material_min": 227,
+          "material_max": 290,
+          "labor_min": 151,
+          "labor_max": 193,
+          "total_min": 378,
+          "total_max": 483
+        },
+        "super_lux": {
+          "material_min": 313,
+          "material_max": 400,
+          "labor_min": 209,
+          "labor_max": 267,
+          "total_min": 522,
+          "total_max": 667
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-16",
+      "category": "marble",
+      "name": "تركيب رخام أرضيات",
+      "description": "تركيب رخام أرضيات شامل مونة",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 243,
+          "material_max": 311,
+          "labor_min": 162,
+          "labor_max": 207,
+          "total_min": 405,
+          "total_max": 518
+        },
+        "medium": {
+          "material_min": 352,
+          "material_max": 450,
+          "labor_min": 235,
+          "labor_max": 300,
+          "total_min": 587,
+          "total_max": 750
+        },
+        "lux": {
+          "material_min": 510,
+          "material_max": 652,
+          "labor_min": 340,
+          "labor_max": 435,
+          "total_min": 850,
+          "total_max": 1087
+        },
+        "super_lux": {
+          "material_min": 704,
+          "material_max": 901,
+          "labor_min": 470,
+          "labor_max": 600,
+          "total_min": 1174,
+          "total_max": 1501
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-17",
+      "category": "marble",
+      "name": "جرانيت مطبخ",
+      "description": "تركيب جرانيت مطبخ شامل تقطيع",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 972,
+          "material_max": 1242,
+          "labor_min": 648,
+          "labor_max": 828,
+          "total_min": 1620,
+          "total_max": 2070
+        },
+        "medium": {
+          "material_min": 1409,
+          "material_max": 1801,
+          "labor_min": 940,
+          "labor_max": 1200,
+          "total_min": 2349,
+          "total_max": 3001
+        },
+        "lux": {
+          "material_min": 2041,
+          "material_max": 2608,
+          "labor_min": 1361,
+          "labor_max": 1739,
+          "total_min": 3402,
+          "total_max": 4347
+        },
+        "super_lux": {
+          "material_min": 2819,
+          "material_max": 3602,
+          "labor_min": 1879,
+          "labor_max": 2401,
+          "total_min": 4698,
+          "total_max": 6003
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-18",
+      "category": "marble",
+      "name": "رخام درج",
+      "description": "تركيب رخام درج شامل قوائم ونوائم",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 648,
+          "material_max": 828,
+          "labor_min": 432,
+          "labor_max": 552,
+          "total_min": 1080,
+          "total_max": 1380
+        },
+        "medium": {
+          "material_min": 940,
+          "material_max": 1201,
+          "labor_min": 626,
+          "labor_max": 800,
+          "total_min": 1566,
+          "total_max": 2001
+        },
+        "lux": {
+          "material_min": 1361,
+          "material_max": 1739,
+          "labor_min": 907,
+          "labor_max": 1159,
+          "total_min": 2268,
+          "total_max": 2898
+        },
+        "super_lux": {
+          "material_min": 1879,
+          "material_max": 2401,
+          "labor_min": 1253,
+          "labor_max": 1601,
+          "total_min": 3132,
+          "total_max": 4002
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-19",
+      "category": "gypsum",
+      "name": "جبس بورد سقف فلات",
+      "description": "سقف جبس بورد فلات",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 173,
+          "material_max": 221,
+          "labor_min": 115,
+          "labor_max": 147,
+          "total_min": 288,
+          "total_max": 368
+        },
+        "medium": {
+          "material_min": 251,
+          "material_max": 320,
+          "labor_min": 167,
+          "labor_max": 214,
+          "total_min": 418,
+          "total_max": 534
+        },
+        "lux": {
+          "material_min": 363,
+          "material_max": 464,
+          "labor_min": 242,
+          "labor_max": 309,
+          "total_min": 605,
+          "total_max": 773
+        },
+        "super_lux": {
+          "material_min": 501,
+          "material_max": 640,
+          "labor_min": 334,
+          "labor_max": 427,
+          "total_min": 835,
+          "total_max": 1067
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-20",
+      "category": "gypsum",
+      "name": "جبس بورد ديكور + إضاءة مخفية",
+      "description": "ديكور جبس بورد مع بيت نور",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 259,
+          "material_max": 331,
+          "labor_min": 173,
+          "labor_max": 221,
+          "total_min": 432,
+          "total_max": 552
+        },
+        "medium": {
+          "material_min": 376,
+          "material_max": 480,
+          "labor_min": 250,
+          "labor_max": 320,
+          "total_min": 626,
+          "total_max": 800
+        },
+        "lux": {
+          "material_min": 544,
+          "material_max": 695,
+          "labor_min": 363,
+          "labor_max": 464,
+          "total_min": 907,
+          "total_max": 1159
+        },
+        "super_lux": {
+          "material_min": 752,
+          "material_max": 961,
+          "labor_min": 501,
+          "labor_max": 640,
+          "total_min": 1253,
+          "total_max": 1601
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-21",
+      "category": "gypsum",
+      "name": "كورنيش جبس",
+      "description": "تركيب كورنيش جبس",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 65,
+          "material_max": 83,
+          "labor_min": 43,
+          "labor_max": 55,
+          "total_min": 108,
+          "total_max": 138
+        },
+        "medium": {
+          "material_min": 94,
+          "material_max": 120,
+          "labor_min": 63,
+          "labor_max": 80,
+          "total_min": 157,
+          "total_max": 200
+        },
+        "lux": {
+          "material_min": 136,
+          "material_max": 174,
+          "labor_min": 91,
+          "labor_max": 116,
+          "total_min": 227,
+          "total_max": 290
+        },
+        "super_lux": {
+          "material_min": 188,
+          "material_max": 240,
+          "labor_min": 125,
+          "labor_max": 160,
+          "total_min": 313,
+          "total_max": 400
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-22",
+      "category": "carpentry",
+      "name": "باب خشب داخلي",
+      "description": "باب خشب داخلي شامل تركيب ومفصلات",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 2430,
+          "material_max": 3105,
+          "labor_min": 1620,
+          "labor_max": 2070,
+          "total_min": 4050,
+          "total_max": 5175
+        },
+        "medium": {
+          "material_min": 3523,
+          "material_max": 4502,
+          "labor_min": 2349,
+          "labor_max": 3002,
+          "total_min": 5872,
+          "total_max": 7504
+        },
+        "lux": {
+          "material_min": 5103,
+          "material_max": 6521,
+          "labor_min": 3402,
+          "labor_max": 4347,
+          "total_min": 8505,
+          "total_max": 10868
+        },
+        "super_lux": {
+          "material_min": 7047,
+          "material_max": 9004,
+          "labor_min": 4698,
+          "labor_max": 6003,
+          "total_min": 11745,
+          "total_max": 15007
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-23",
+      "category": "carpentry",
+      "name": "باب مصفح",
+      "description": "باب مصفح للشقة شامل تركيب",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 6480,
+          "material_max": 8280,
+          "labor_min": 4320,
+          "labor_max": 5520,
+          "total_min": 10800,
+          "total_max": 13800
+        },
+        "medium": {
+          "material_min": 9396,
+          "material_max": 12006,
+          "labor_min": 6264,
+          "labor_max": 8004,
+          "total_min": 15660,
+          "total_max": 20010
+        },
+        "lux": {
+          "material_min": 13608,
+          "material_max": 17388,
+          "labor_min": 9072,
+          "labor_max": 11592,
+          "total_min": 22680,
+          "total_max": 28980
+        },
+        "super_lux": {
+          "material_min": 18792,
+          "material_max": 24012,
+          "labor_min": 12528,
+          "labor_max": 16008,
+          "total_min": 31320,
+          "total_max": 40020
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-24",
+      "category": "carpentry",
+      "name": "دولاب / تجليد خشب",
+      "description": "تجليد أو دولاب خشب حسب المقاس",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 1512,
+          "material_max": 1932,
+          "labor_min": 1008,
+          "labor_max": 1288,
+          "total_min": 2520,
+          "total_max": 3220
+        },
+        "medium": {
+          "material_min": 2192,
+          "material_max": 2801,
+          "labor_min": 1462,
+          "labor_max": 1868,
+          "total_min": 3654,
+          "total_max": 4669
+        },
+        "lux": {
+          "material_min": 3175,
+          "material_max": 4057,
+          "labor_min": 2117,
+          "labor_max": 2705,
+          "total_min": 5292,
+          "total_max": 6762
+        },
+        "super_lux": {
+          "material_min": 4385,
+          "material_max": 5603,
+          "labor_min": 2923,
+          "labor_max": 3735,
+          "total_min": 7308,
+          "total_max": 9338
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-25",
+      "category": "alumetal",
+      "name": "شباك ألوميتال",
+      "description": "شباك ألوميتال زجاج دبل",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 1728,
+          "material_max": 2208,
+          "labor_min": 1152,
+          "labor_max": 1472,
+          "total_min": 2880,
+          "total_max": 3680
+        },
+        "medium": {
+          "material_min": 2506,
+          "material_max": 3202,
+          "labor_min": 1670,
+          "labor_max": 2134,
+          "total_min": 4176,
+          "total_max": 5336
+        },
+        "lux": {
+          "material_min": 3629,
+          "material_max": 4637,
+          "labor_min": 2419,
+          "labor_max": 3091,
+          "total_min": 6048,
+          "total_max": 7728
+        },
+        "super_lux": {
+          "material_min": 5011,
+          "material_max": 6403,
+          "labor_min": 3341,
+          "labor_max": 4269,
+          "total_min": 8352,
+          "total_max": 10672
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-26",
+      "category": "alumetal",
+      "name": "باب ألوميتال",
+      "description": "باب ألوميتال حمام/بلكونة",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 2052,
+          "material_max": 2622,
+          "labor_min": 1368,
+          "labor_max": 1748,
+          "total_min": 3420,
+          "total_max": 4370
+        },
+        "medium": {
+          "material_min": 2975,
+          "material_max": 3802,
+          "labor_min": 1984,
+          "labor_max": 2534,
+          "total_min": 4959,
+          "total_max": 6336
+        },
+        "lux": {
+          "material_min": 4309,
+          "material_max": 5506,
+          "labor_min": 2873,
+          "labor_max": 3671,
+          "total_min": 7182,
+          "total_max": 9177
+        },
+        "super_lux": {
+          "material_min": 5951,
+          "material_max": 7604,
+          "labor_min": 3967,
+          "labor_max": 5069,
+          "total_min": 9918,
+          "total_max": 12673
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-27",
+      "category": "alumetal",
+      "name": "شيش حصيرة",
+      "description": "تركيب شيش حصيرة ألوميتال",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 810,
+          "material_max": 1035,
+          "labor_min": 540,
+          "labor_max": 690,
+          "total_min": 1350,
+          "total_max": 1725
+        },
+        "medium": {
+          "material_min": 1175,
+          "material_max": 1501,
+          "labor_min": 783,
+          "labor_max": 1000,
+          "total_min": 1958,
+          "total_max": 2501
+        },
+        "lux": {
+          "material_min": 1701,
+          "material_max": 2173,
+          "labor_min": 1134,
+          "labor_max": 1449,
+          "total_min": 2835,
+          "total_max": 3622
+        },
+        "super_lux": {
+          "material_min": 2349,
+          "material_max": 3001,
+          "labor_min": 1566,
+          "labor_max": 2001,
+          "total_min": 3915,
+          "total_max": 5002
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-28",
+      "category": "insulation",
+      "name": "عزل مائي حمام",
+      "description": "عزل مائي حمام بيتومين/ممبران",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 97,
+          "material_max": 124,
+          "labor_min": 65,
+          "labor_max": 83,
+          "total_min": 162,
+          "total_max": 207
+        },
+        "medium": {
+          "material_min": 141,
+          "material_max": 180,
+          "labor_min": 94,
+          "labor_max": 120,
+          "total_min": 235,
+          "total_max": 300
+        },
+        "lux": {
+          "material_min": 204,
+          "material_max": 261,
+          "labor_min": 136,
+          "labor_max": 174,
+          "total_min": 340,
+          "total_max": 435
+        },
+        "super_lux": {
+          "material_min": 282,
+          "material_max": 360,
+          "labor_min": 188,
+          "labor_max": 240,
+          "total_min": 470,
+          "total_max": 600
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-29",
+      "category": "insulation",
+      "name": "عزل حراري أسطح",
+      "description": "عزل حراري أسطح فوم",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 119,
+          "material_max": 152,
+          "labor_min": 79,
+          "labor_max": 101,
+          "total_min": 198,
+          "total_max": 253
+        },
+        "medium": {
+          "material_min": 172,
+          "material_max": 220,
+          "labor_min": 115,
+          "labor_max": 147,
+          "total_min": 287,
+          "total_max": 367
+        },
+        "lux": {
+          "material_min": 250,
+          "material_max": 319,
+          "labor_min": 166,
+          "labor_max": 212,
+          "total_min": 416,
+          "total_max": 531
+        },
+        "super_lux": {
+          "material_min": 344,
+          "material_max": 440,
+          "labor_min": 230,
+          "labor_max": 294,
+          "total_min": 574,
+          "total_max": 734
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-30",
+      "category": "insulation",
+      "name": "عزل مائي أسطح",
+      "description": "عزل مائي أسطح",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 108,
+          "material_max": 138,
+          "labor_min": 72,
+          "labor_max": 92,
+          "total_min": 180,
+          "total_max": 230
+        },
+        "medium": {
+          "material_min": 157,
+          "material_max": 200,
+          "labor_min": 104,
+          "labor_max": 134,
+          "total_min": 261,
+          "total_max": 334
+        },
+        "lux": {
+          "material_min": 227,
+          "material_max": 290,
+          "labor_min": 151,
+          "labor_max": 193,
+          "total_min": 378,
+          "total_max": 483
+        },
+        "super_lux": {
+          "material_min": 313,
+          "material_max": 400,
+          "labor_min": 209,
+          "labor_max": 267,
+          "total_min": 522,
+          "total_max": 667
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-31",
+      "category": "ac",
+      "name": "تأسيس نحاس تكييف",
+      "description": "تأسيس مواسير نحاس وكهرباء تكييف",
+      "unit": "مقطوعية",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 2430,
+          "material_max": 3105,
+          "labor_min": 1620,
+          "labor_max": 2070,
+          "total_min": 4050,
+          "total_max": 5175
+        },
+        "medium": {
+          "material_min": 3523,
+          "material_max": 4502,
+          "labor_min": 2349,
+          "labor_max": 3002,
+          "total_min": 5872,
+          "total_max": 7504
+        },
+        "lux": {
+          "material_min": 5103,
+          "material_max": 6521,
+          "labor_min": 3402,
+          "labor_max": 4347,
+          "total_min": 8505,
+          "total_max": 10868
+        },
+        "super_lux": {
+          "material_min": 7047,
+          "material_max": 9004,
+          "labor_min": 4698,
+          "labor_max": 6003,
+          "total_min": 11745,
+          "total_max": 15007
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-32",
+      "category": "ac",
+      "name": "تركيب تكييف",
+      "description": "تركيب وتشغيل تكييف",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 810,
+          "material_max": 1035,
+          "labor_min": 540,
+          "labor_max": 690,
+          "total_min": 1350,
+          "total_max": 1725
+        },
+        "medium": {
+          "material_min": 1175,
+          "material_max": 1501,
+          "labor_min": 783,
+          "labor_max": 1000,
+          "total_min": 1958,
+          "total_max": 2501
+        },
+        "lux": {
+          "material_min": 1701,
+          "material_max": 2173,
+          "labor_min": 1134,
+          "labor_max": 1449,
+          "total_min": 2835,
+          "total_max": 3622
+        },
+        "super_lux": {
+          "material_min": 2349,
+          "material_max": 3001,
+          "labor_min": 1566,
+          "labor_max": 2001,
+          "total_min": 3915,
+          "total_max": 5002
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-33",
+      "category": "ac",
+      "name": "تأسيس صرف تكييف",
+      "description": "تأسيس صرف ومواسير تكييف",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 135,
+          "material_max": 173,
+          "labor_min": 90,
+          "labor_max": 115,
+          "total_min": 225,
+          "total_max": 288
+        },
+        "medium": {
+          "material_min": 196,
+          "material_max": 250,
+          "labor_min": 130,
+          "labor_max": 167,
+          "total_min": 326,
+          "total_max": 417
+        },
+        "lux": {
+          "material_min": 283,
+          "material_max": 362,
+          "labor_min": 189,
+          "labor_max": 242,
+          "total_min": 472,
+          "total_max": 604
+        },
+        "super_lux": {
+          "material_min": 391,
+          "material_max": 500,
+          "labor_min": 261,
+          "labor_max": 334,
+          "total_min": 652,
+          "total_max": 834
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-34",
+      "category": "kitchens",
+      "name": "مطبخ خشب",
+      "description": "مطبخ خشب شامل تركيب",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 4590,
+          "material_max": 5865,
+          "labor_min": 3060,
+          "labor_max": 3910,
+          "total_min": 7650,
+          "total_max": 9775
+        },
+        "medium": {
+          "material_min": 6655,
+          "material_max": 8504,
+          "labor_min": 4437,
+          "labor_max": 5670,
+          "total_min": 11092,
+          "total_max": 14174
+        },
+        "lux": {
+          "material_min": 9639,
+          "material_max": 12317,
+          "labor_min": 6426,
+          "labor_max": 8211,
+          "total_min": 16065,
+          "total_max": 20528
+        },
+        "super_lux": {
+          "material_min": 13311,
+          "material_max": 17008,
+          "labor_min": 8874,
+          "labor_max": 11339,
+          "total_min": 22185,
+          "total_max": 28347
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-35",
+      "category": "kitchens",
+      "name": "مطبخ ألوميتال",
+      "description": "مطبخ ألوميتال شامل تركيب",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 3510,
+          "material_max": 4485,
+          "labor_min": 2340,
+          "labor_max": 2990,
+          "total_min": 5850,
+          "total_max": 7475
+        },
+        "medium": {
+          "material_min": 5089,
+          "material_max": 6503,
+          "labor_min": 3393,
+          "labor_max": 4336,
+          "total_min": 8482,
+          "total_max": 10839
+        },
+        "lux": {
+          "material_min": 7371,
+          "material_max": 9418,
+          "labor_min": 4914,
+          "labor_max": 6279,
+          "total_min": 12285,
+          "total_max": 15697
+        },
+        "super_lux": {
+          "material_min": 10179,
+          "material_max": 13007,
+          "labor_min": 6786,
+          "labor_max": 8671,
+          "total_min": 16965,
+          "total_max": 21678
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-36",
+      "category": "kitchens",
+      "name": "رخامة مطبخ",
+      "description": "رخامة مطبخ جرانيت/رخام",
+      "unit": "م.ط",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 972,
+          "material_max": 1242,
+          "labor_min": 648,
+          "labor_max": 828,
+          "total_min": 1620,
+          "total_max": 2070
+        },
+        "medium": {
+          "material_min": 1409,
+          "material_max": 1801,
+          "labor_min": 940,
+          "labor_max": 1200,
+          "total_min": 2349,
+          "total_max": 3001
+        },
+        "lux": {
+          "material_min": 2041,
+          "material_max": 2608,
+          "labor_min": 1361,
+          "labor_max": 1739,
+          "total_min": 3402,
+          "total_max": 4347
+        },
+        "super_lux": {
+          "material_min": 2819,
+          "material_max": 3602,
+          "labor_min": 1879,
+          "labor_max": 2401,
+          "total_min": 4698,
+          "total_max": 6003
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-37",
+      "category": "bathrooms",
+      "name": "تشطيب حمام كامل",
+      "description": "تشطيب حمام كامل سباكة وسيراميك ودهان",
+      "unit": "مقطوعية",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 18900,
+          "material_max": 24150,
+          "labor_min": 12600,
+          "labor_max": 16100,
+          "total_min": 31500,
+          "total_max": 40250
+        },
+        "medium": {
+          "material_min": 27405,
+          "material_max": 35017,
+          "labor_min": 18270,
+          "labor_max": 23345,
+          "total_min": 45675,
+          "total_max": 58362
+        },
+        "lux": {
+          "material_min": 39690,
+          "material_max": 50715,
+          "labor_min": 26460,
+          "labor_max": 33810,
+          "total_min": 66150,
+          "total_max": 84525
+        },
+        "super_lux": {
+          "material_min": 54810,
+          "material_max": 70035,
+          "labor_min": 36540,
+          "labor_max": 46690,
+          "total_min": 91350,
+          "total_max": 116725
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-38",
+      "category": "bathrooms",
+      "name": "تركيب بانيو",
+      "description": "تركيب بانيو شامل صرف",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 1890,
+          "material_max": 2415,
+          "labor_min": 1260,
+          "labor_max": 1610,
+          "total_min": 3150,
+          "total_max": 4025
+        },
+        "medium": {
+          "material_min": 2741,
+          "material_max": 3502,
+          "labor_min": 1827,
+          "labor_max": 2334,
+          "total_min": 4568,
+          "total_max": 5836
+        },
+        "lux": {
+          "material_min": 3969,
+          "material_max": 5071,
+          "labor_min": 2646,
+          "labor_max": 3381,
+          "total_min": 6615,
+          "total_max": 8452
+        },
+        "super_lux": {
+          "material_min": 5481,
+          "material_max": 7003,
+          "labor_min": 3654,
+          "labor_max": 4669,
+          "total_min": 9135,
+          "total_max": 11672
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-39",
+      "category": "bathrooms",
+      "name": "كبينة شاور",
+      "description": "تركيب كبينة شاور زجاج",
+      "unit": "قطعة",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 3510,
+          "material_max": 4485,
+          "labor_min": 2340,
+          "labor_max": 2990,
+          "total_min": 5850,
+          "total_max": 7475
+        },
+        "medium": {
+          "material_min": 5089,
+          "material_max": 6503,
+          "labor_min": 3393,
+          "labor_max": 4336,
+          "total_min": 8482,
+          "total_max": 10839
+        },
+        "lux": {
+          "material_min": 7371,
+          "material_max": 9418,
+          "labor_min": 4914,
+          "labor_max": 6279,
+          "total_min": 12285,
+          "total_max": 15697
+        },
+        "super_lux": {
+          "material_min": 10179,
+          "material_max": 13007,
+          "labor_min": 6786,
+          "labor_max": 8671,
+          "total_min": 16965,
+          "total_max": 21678
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-40",
+      "category": "facades",
+      "name": "دهان واجهة",
+      "description": "دهان واجهة خارجي",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 76,
+          "material_max": 97,
+          "labor_min": 50,
+          "labor_max": 64,
+          "total_min": 126,
+          "total_max": 161
+        },
+        "medium": {
+          "material_min": 110,
+          "material_max": 140,
+          "labor_min": 73,
+          "labor_max": 93,
+          "total_min": 183,
+          "total_max": 233
+        },
+        "lux": {
+          "material_min": 159,
+          "material_max": 203,
+          "labor_min": 106,
+          "labor_max": 135,
+          "total_min": 265,
+          "total_max": 338
+        },
+        "super_lux": {
+          "material_min": 219,
+          "material_max": 280,
+          "labor_min": 146,
+          "labor_max": 187,
+          "total_min": 365,
+          "total_max": 467
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-41",
+      "category": "facades",
+      "name": "حجر هاشمي",
+      "description": "تركيب حجر هاشمي واجهة",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 351,
+          "material_max": 448,
+          "labor_min": 234,
+          "labor_max": 299,
+          "total_min": 585,
+          "total_max": 747
+        },
+        "medium": {
+          "material_min": 509,
+          "material_max": 650,
+          "labor_min": 339,
+          "labor_max": 434,
+          "total_min": 848,
+          "total_max": 1084
+        },
+        "lux": {
+          "material_min": 737,
+          "material_max": 942,
+          "labor_min": 491,
+          "labor_max": 628,
+          "total_min": 1228,
+          "total_max": 1570
+        },
+        "super_lux": {
+          "material_min": 1018,
+          "material_max": 1301,
+          "labor_min": 678,
+          "labor_max": 867,
+          "total_min": 1696,
+          "total_max": 2168
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-42",
+      "category": "facades",
+      "name": "كلادينج",
+      "description": "تركيب كلادينج واجهة",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 972,
+          "material_max": 1242,
+          "labor_min": 648,
+          "labor_max": 828,
+          "total_min": 1620,
+          "total_max": 2070
+        },
+        "medium": {
+          "material_min": 1409,
+          "material_max": 1801,
+          "labor_min": 940,
+          "labor_max": 1200,
+          "total_min": 2349,
+          "total_max": 3001
+        },
+        "lux": {
+          "material_min": 2041,
+          "material_max": 2608,
+          "labor_min": 1361,
+          "labor_max": 1739,
+          "total_min": 3402,
+          "total_max": 4347
+        },
+        "super_lux": {
+          "material_min": 2819,
+          "material_max": 3602,
+          "labor_min": 1879,
+          "labor_max": 2401,
+          "total_min": 4698,
+          "total_max": 6003
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-43",
+      "category": "demolition",
+      "name": "هدم حائط",
+      "description": "هدم حائط طوب",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 135,
+          "material_max": 173,
+          "labor_min": 90,
+          "labor_max": 115,
+          "total_min": 225,
+          "total_max": 288
+        },
+        "medium": {
+          "material_min": 196,
+          "material_max": 250,
+          "labor_min": 130,
+          "labor_max": 167,
+          "total_min": 326,
+          "total_max": 417
+        },
+        "lux": {
+          "material_min": 283,
+          "material_max": 362,
+          "labor_min": 189,
+          "labor_max": 242,
+          "total_min": 472,
+          "total_max": 604
+        },
+        "super_lux": {
+          "material_min": 391,
+          "material_max": 500,
+          "labor_min": 261,
+          "labor_max": 334,
+          "total_min": 652,
+          "total_max": 834
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-44",
+      "category": "demolition",
+      "name": "تكسير سيراميك",
+      "description": "تكسير وإزالة سيراميك قديم",
+      "unit": "م²",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 65,
+          "material_max": 83,
+          "labor_min": 43,
+          "labor_max": 55,
+          "total_min": 108,
+          "total_max": 138
+        },
+        "medium": {
+          "material_min": 94,
+          "material_max": 120,
+          "labor_min": 63,
+          "labor_max": 80,
+          "total_min": 157,
+          "total_max": 200
+        },
+        "lux": {
+          "material_min": 136,
+          "material_max": 174,
+          "labor_min": 91,
+          "labor_max": 116,
+          "total_min": 227,
+          "total_max": 290
+        },
+        "super_lux": {
+          "material_min": 188,
+          "material_max": 240,
+          "labor_min": 125,
+          "labor_max": 160,
+          "total_min": 313,
+          "total_max": 400
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    },
+    {
+      "id": "item-45",
+      "category": "demolition",
+      "name": "نقل مخلفات",
+      "description": "نقل مخلفات تشطيب (نقلة)",
+      "unit": "مقطوعية",
+      "image": "images/placeholder.svg",
+      "levels": {
+        "economy": {
+          "material_min": 972,
+          "material_max": 1242,
+          "labor_min": 648,
+          "labor_max": 828,
+          "total_min": 1620,
+          "total_max": 2070
+        },
+        "medium": {
+          "material_min": 1409,
+          "material_max": 1801,
+          "labor_min": 940,
+          "labor_max": 1200,
+          "total_min": 2349,
+          "total_max": 3001
+        },
+        "lux": {
+          "material_min": 2041,
+          "material_max": 2608,
+          "labor_min": 1361,
+          "labor_max": 1739,
+          "total_min": 3402,
+          "total_max": 4347
+        },
+        "super_lux": {
+          "material_min": 2819,
+          "material_max": 3602,
+          "labor_min": 1879,
+          "labor_max": 2401,
+          "total_min": 4698,
+          "total_max": 6003
+        }
+      },
+      "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
+      "updated_at": "2026-11-20"
+    }
+  ]
+}

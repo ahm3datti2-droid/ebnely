@@ -1,0 +1,15 @@
+# Ebnely — Cloudflare Workers + D1 + R2 (المرحلة 5)
+# دي إعدادات المرحلة 5 — المرحلة 1 شغالة على Vercel بملف JSON،
+# وملف db/schema.sql جاهز للنقل لـ D1 بدون تغيير في شكل البيانات.
+name = "ebnely"
+main = "worker.js"
+compatibility_date = "2026-11-20"
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "ebnely-db"
+# database_id = "PUT-D1-ID-HERE"
+
+# [[r2_buckets]]
+# binding = "IMAGES"
+# bucket_name = "ebnely-images"

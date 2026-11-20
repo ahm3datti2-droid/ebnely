@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>القسم — Ebnely | ابنيلي</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><b>Ebnely</b><span>ابنيلي</span></a>
+  <nav><a href="index.html">الرئيسية</a><a href="admin.html">الأدمن</a></nav>
+</div></header>
+<main class="container"><section class="section">
+  <a href="index.html">← رجوع للأقسام</a>
+  <h2 id="catName">…</h2><p class="muted" id="catDesc"></p>
+  <div class="levels" id="levels">
+    <button data-level="economy">اقتصادي</button>
+    <button data-level="medium" class="active">متوسط</button>
+    <button data-level="lux">لوكس</button>
+    <button data-level="super_lux">سوبر لوكس</button>
+  </div>
+  <div id="items" class="grid"></div>
+</section></main>
+<a id="waFloat" class="whatsapp-float" href="#" target="_blank">✆</a>
+<footer><div class="container"><b>Ebnely — ابنيلي</b></div></footer>
+<script src="js/config.js"></script><script src="js/data.js"></script>
+<script>
+let DATA, level = localStorage.getItem("ebnely_level") || "medium";
+const catId = new URLSearchParams(location.search).get("cat");
+async function init(){
+  DATA = await loadData();
+  const cat = DATA.categories.find(c=>c.id===catId);
+  if(!cat){document.getElementById("catName").textContent="القسم مش موجود";return;}
+  document.title = cat.name + " — Ebnely | ابنيلي";
+  document.getElementById("catName").textContent = cat.icon+" "+cat.name;
+  document.getElementById("catDesc").textContent = cat.description;
+  document.querySelectorAll("#levels button").forEach(b=>{
+    if(b.dataset.level===level) b.classList.add("active"); else b.classList.remove("active");
+    b.onclick=()=>{level=b.dataset.level;localStorage.setItem("ebnely_level",level);
+      document.querySelectorAll("#levels button").forEach(x=>x.classList.remove("active"));b.classList.add("active");render();};
+  });
+  document.getElementById("waFloat").href = waLink("سلام، عايز استفسر عن أسعار قسم "+cat.name+" من Ebnely");
+  render();
+}
+function render(){
+  const list = DATA.items.filter(i=>i.category===catId);
+  document.getElementById("items").innerHTML = list.map(it=>{
+    const p = it.levels[level];
+    return `<a class="card" href="item.html?id=${it.id}">
+      <h3 style="margin:0 0 4px">${it.name}</h3>
+      <p class="muted" style="margin:0">${it.description}</p>
+      <p><span class="chip">${it.unit}</span> <span class="chip">${levelLabel(level)}</span></p>
+      <div class="price">${fmt(p.total_min)} – ${fmt(p.total_max)} ج.م <small>/ ${it.unit}</small></div>
+      <p class="muted">خامة ${fmt(p.material_min)}–${fmt(p.material_max)} + مصنعية ${fmt(p.labor_min)}–${fmt(p.labor_max)} • آخر تحديث ${it.updated_at}</p>
+    </a>`;
+  }).join("");
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

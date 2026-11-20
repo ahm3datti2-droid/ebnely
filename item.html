@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>البند — Ebnely | ابنيلي</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><b>Ebnely</b><span>ابنيلي</span></a>
+  <nav><a href="index.html">الرئيسية</a><a href="admin.html">الأدمن</a></nav>
+</div></header>
+<main class="container"><section class="section">
+  <a href="index.html">← رجوع</a>
+  <div id="box"></div>
+</section></main>
+<a id="waFloat" class="whatsapp-float" href="#" target="_blank">✆</a>
+<footer><div class="container"><b>Ebnely — ابنيلي</b></div></footer>
+<script src="js/config.js"></script><script src="js/data.js"></script>
+<script>
+async function init(){
+  const DATA = await loadData();
+  const id = new URLSearchParams(location.search).get("id");
+  const it = DATA.items.find(i=>i.id===id);
+  const box = document.getElementById("box");
+  if(!it){box.innerHTML="<div class='card'>البند مش موجود</div>";return;}
+  const cat = DATA.categories.find(c=>c.id===it.category);
+  document.title = it.name+" — Ebnely | ابنيلي";
+  const rows = Object.keys(it.levels).map(k=>{
+    const p=it.levels[k];
+    return `<tr><td>${levelLabel(k)}</td><td>${fmt(p.material_min)} – ${fmt(p.material_max)}</td><td>${fmt(p.labor_min)} – ${fmt(p.labor_max)}</td><td><b>${fmt(p.total_min)} – ${fmt(p.total_max)}</b></td></tr>`;
+  }).join("");
+  box.innerHTML = `<div class="card">
+    <p class="muted" style="margin:0">${cat?cat.icon+" "+cat.name:""}</p>
+    <h2 style="margin:6px 0">${it.name}</h2>
+    <p>${it.description}</p>
+    <p><span class="chip">وحدة القياس: ${it.unit}</span> <span class="chip">آخر تحديث: ${it.updated_at}</span></p>
+    <table><tr><th>المستوى</th><th>خامة (ج.م)</th><th>مصنعية (ج.م)</th><th>الإجمالي (ج.م)</th></tr>${rows}</table>
+    <p class="muted">ملاحظات: ${it.notes||"—"}</p>
+    <a class="btn" id="waBtn" target="_blank" href="#">ابعت طلب على واتساب</a>
+    <a class="btn ghost" href="category.html?cat=${it.category}">كل بنود ${cat?cat.name:"القسم"}</a>
+  </div>`;
+  const msg = `سلام، عايز استفسر عن بند "${it.name}" (${cat?cat.name:""}) من Ebnely — السعر حسب الموقع تقريباً.`;
+  document.getElementById("waBtn").href = waLink(msg);
+  document.getElementById("waFloat").href = waLink(msg);
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

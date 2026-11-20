@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ebnely | ابنيلي — دليل أسعار تشطيب العقارات في مصر</title>
+<meta name="description" content="دليل أسعار تشطيب العقارات في مصر — محارة، سباكة، كهرباء، نقاشة، سيراميك، رخام، جبس بورد وأكتر. احسب تكلفة تشطيب شقتك.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1E2A26">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><b>Ebnely</b><span>ابنيلي</span></a>
+  <nav><a href="index.html">الرئيسية</a><a href="#cats">الأقسام</a><a href="calculator.html">احسب تكلفة شقتك</a><a href="admin.html">الأدمن</a></nav>
+</div></header>
+
+<section class="hero"><div class="container">
+  <h1>دليل أسعار تشطيب العقارات في مصر</h1>
+  <p>شوف سعر كل بند — خامة + مصنعية — بالمستوى اللي يناسبك، واحسب تكلفة شقتك قبل ما تبدأ.</p>
+  <div class="search"><input id="q" type="search" placeholder="ابحث عن بند أو قسم… مثال: سباكة، بورسلين، جبس بورد"></div>
+  <p class="muted" style="color:#D8D2C2;margin-top:10px" id="updatedAt"></p>
+  <div style="margin-top:14px"><a class="btn" href="calculator.html">احسب تكلفة شقتك ←</a></div>
+</div></section>
+
+<main class="container">
+  <section class="section">
+    <h2>الأقسام — 15 قسم</h2>
+    <div class="levels">
+      <button data-level="economy">اقتصادي</button>
+      <button data-level="medium" class="active">متوسط</button>
+      <button data-level="lux">لوكس</button>
+      <button data-level="super_lux">سوبر لوكس</button>
+    </div>
+    <p class="muted">المستوى اللي تختاره هنا هو اللي هيظهر لك في صفحات الأقسام والبنود.</p>
+    <div id="cats" class="grid"></div>
+  </section>
+  <div class="notice"><b>ملحوظة:</b> كل الأسعار تقريبية استرشادية وتتحدث دورياً حسب السوق. السعر النهائي يتأكد بعد معاينة — ابعتلنا على واتساب للتأكيد.</div>
+</main>
+
+<a id="waFloat" class="whatsapp-float" href="#" target="_blank" aria-label="واتساب">✆</a>
+<footer><div class="container"><b>Ebnely — ابنيلي</b><br>دليل أسعار تشطيب العقارات في مصر • الأسعار بالجنيه المصري (ج.م)</div></footer>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}</script>
+</body>
+</html>

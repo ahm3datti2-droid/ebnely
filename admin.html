@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة الأدمن — Ebnely | ابنيلي</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><b>Ebnely</b><span>ابنيلي</span></a>
+  <nav><a href="index.html">عرض الموقع</a></nav>
+</div></header>
+<main class="container"><section class="section">
+  <h2>لوحة الأدمن — Ebnely</h2>
+
+  <div id="loginBox" class="card" style="max-width:420px">
+    <p>دخول الأدمن محمي بباسورد. الباسورد الافتراضي: <b>Ebnely2026</b> — غيّره من تبويب الإعدادات بعد أول دخول.</p>
+    <label>باسورد الأدمن</label>
+    <input id="pw" type="password" placeholder="اكتب الباسورد">
+    <div style="margin-top:12px"><button class="btn" onclick="doLogin()">دخول</button></div>
+    <p class="muted" id="loginErr" style="color:var(--red)"></p>
+  </div>
+
+  <div id="panel" class="hidden">
+    <div class="admin-bar card"><b>أهلاً يا أدمن ✅</b> — التعديلات بتتحفظ في جهازك فوراً، وبتظهر للزوار على نفس الجهاز. للنشر للكل اضغط "تصدير JSON" من الأسفل وابعت الملف ليّا أرفعه على GitHub — وفي المرحلة 4 هنوصّل الحفظ المباشر لقاعدة البيانات.
+      <button class="btn small dark" style="margin-inline-start:8px" onclick="doLogout()">خروج</button>
+    </div>
+    <div class="tabs">
+      <button data-tab="items" class="active" onclick="showTab('items')">البنود والأسعار</button>
+      <button data-tab="bulk" onclick="showTab('bulk')">تعديل أسعار بالجملة</button>
+      <button data-tab="settings" onclick="showTab('settings')">الإعدادات</button>
+      <button data-tab="requests" onclick="showTab('requests')">الطلبات</button>
+    </div>
+
+    <div id="tab-items">
+      <div class="row"><div><label>القسم</label><select id="fCat"></select></div>
+      <div><label>ابحث في البنود</label><input id="fQ" placeholder="مثال: بورسلين"></div></div>
+      <div id="itemsList" style="margin-top:14px"></div>
+      <div class="card" style="margin-top:14px"><h3 style="margin-top:0">إضافة بند جديد</h3>
+        <div class="row"><div><label>اسم البند</label><input id="nName"></div>
+        <div><label>وحدة القياس</label><select id="nUnit"><option>م²</option><option>م.ط</option><option>نقطة</option><option>قطعة</option><option>مقطوعية</option></select></div></div>
+        <label>وصف قصير</label><input id="nDesc">
+        <label>سعر اقتصادي إجمالي (من – إلى)</label>
+        <div class="row"><div><input id="nMin" type="number" placeholder="من"></div><div><input id="nMax" type="number" placeholder="إلى"></div></div>
+        <div style="margin-top:12px"><button class="btn" onclick="addItem()">إضافة البند</button></div>
+        <p class="muted">باقي المستويات (متوسط/لوكس/سوبر لوكس) بتتحسب تلقائياً ×1.45 / ×2.1 / ×2.9 — وتقدر تعدّلها بعد كده من جدول البند.</p>
+      </div>
+    </div>
+
+    <div id="tab-bulk" class="hidden">
+      <div class="card"><h3 style="margin-top:0">تعديل أسعار كتير مرة واحدة</h3>
+        <label>القسم</label><select id="bCat"></select>
+        <label>النسبة % — مثال: 10 يعني زوّد 10%، و -5 يعني قلّل 5%</label>
+        <input id="bPct" type="number" value="10">
+        <label>المستوى</label><select id="bLevel"><option value="all">كل المستويات</option><option value="economy">اقتصادي</option><option value="medium">متوسط</option><option value="lux">لوكس</option><option value="super_lux">سوبر لوكس</option></select>
+        <div style="margin-top:12px"><button class="btn" onclick="bulkUpdate()">طبّق التعديل</button></div>
+        <p class="muted" id="bulkMsg"></p>
+      </div>
+    </div>
+
+    <div id="tab-settings" class="hidden">
+      <div class="card"><h3 style="margin-top:0">الإعدادات</h3>
+        <label>رقم الواتساب (صيغة دولية بدون + — مثال 2011117543009)</label>
+        <input id="sWa">
+        <label>اسم التطبيق بالعربي</label>
+        <input id="sName" value="ابنيلي">
+        <label>باسورد الأدمن الجديد</label>
+        <input id="sPw" type="password" placeholder="سيبه فاضي لو مش عايز تغيّره">
+        <div style="margin-top:12px"><button class="btn" onclick="saveSettings()">حفظ الإعدادات</button></div>
+        <p class="muted" id="setMsg"></p>
+        <hr>
+        <h3>تصدير / استيراد</h3>
+        <button class="btn dark" onclick="exportJSON()">تصدير JSON (للنشر للكل)</button>
+        <p class="muted">الملف اللي هينزل اسمه ebnely-prices.json — ابعتهولي وأنا أرفعه على GitHub وVercel في دقيقة، والأسعار الجديدة تظهر للكل.</p>
+      </div>
+    </div>
+
+    <div id="tab-requests" class="hidden">
+      <div class="card"><h3 style="margin-top:0">الطلبات اللي جاية من العملاء</h3>
+      <p class="muted">لسه مفيش طلبات متسجلة في المرحلة 1. في المرحلة 3 الطلبات اللي تيجي من الحاسبة وعرض السعر هتتسجل هنا (وتتبعت واتساب فوراً).</p>
+      <div id="reqList"></div></div>
+    </div>
+  </div>
+</section></main>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/admin.js"></script>
+</body>
+</html>
