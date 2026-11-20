@@ -44,13 +44,13 @@ function renderCatsAdmin(){
       </div>
       <div class="row" style="margin-top:10px">
         <div><label>الأيقونة (إيموجي)</label><input id="icon-${c.id}" value="${c.icon||""}" placeholder="🏗️"></div>
-        <div><label>رابط صورة القسم</label><input id="img-${c.id}" value="${(c.image||"").startsWith("data:")?"":(c.image||"")}" placeholder="https://… أو سيبه فاضي"></div>
+        <div><label>اسم الصورة</label><input id="imgname-${c.id}" value="${c.image_name||""}" placeholder="مثال: سباكة.jpg"></div>
       </div>
-      <label>أو ارفع صورة من موبايلك</label>
+      <label>صورة القسم — من موبايلك (مش لينك)</label>
       <input type="file" accept="image/*" onchange="catImagePicked(event,'${c.id}')">
-      <p class="muted">الصورة بتتصغّر تلقائياً (أقصى 600px) عشان تتحفظ بسرعة. لو رفعت صورة، هي اللي هتظهر في الرئيسية بدل الأيقونة.</p>
+      ${c.image ? `<p class="muted">الصورة الحالية: ${c.image_name||"صورة مرفوعة"} — دوس "اختار ملف" فوق عشان تغيّرها بصورة جديدة من موبايلك.</p>` : `<p class="muted">لسه مفيش صورة — اختار صورة من موبايلك وهتظهر في الرئيسية بدل الأيقونة. الصورة بتتصغّر تلقائياً (أقصى 600px).</p>`}
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn small" onclick="saveCat('${c.id}')">حفظ الأيقونة والصورة</button>
+        <button class="btn small" onclick="saveCat('${c.id}')">حفظ الأيقونة واسم الصورة</button>
         <button class="btn small ghost" onclick="removeCatImage('${c.id}')">إزالة الصورة (ارجع للأيقونة)</button>
         <button class="btn small ghost" onclick="delCategory('${c.id}')">حذف القسم</button>
       </div>
@@ -60,10 +60,10 @@ function renderCatsAdmin(){
 function saveCat(id){
   const c = DATA.categories.find(x=>x.id===id); if(!c) return;
   c.icon = document.getElementById("icon-"+id).value.trim() || "📁";
-  const url = document.getElementById("img-"+id).value.trim();
-  if(url) c.image = url;
+  const nm = document.getElementById("imgname-"+id).value.trim();
+  if(nm) c.image_name = nm; else delete c.image_name;
   saveOverrides(); renderCatsAdmin();
-  alert("اتحفظت أيقونة/صورة قسم " + c.name + " ✅ — شوفها في الرئيسية.");
+  alert("اتحفظت أيقونة/اسم صورة قسم " + c.name + " ✅ — شوفها في الرئيسية.");
 }
 function removeCatImage(id){
   const c = DATA.categories.find(x=>x.id===id); if(!c) return;
@@ -81,8 +81,9 @@ function catImagePicked(ev, id){
       cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
       const c = DATA.categories.find(x=>x.id===id); if(!c) return;
       c.image = cv.toDataURL("image/jpeg", 0.82);
+      c.image_name = f.name || "صورة القسم";
       saveOverrides(); renderCatsAdmin();
-      alert("الصورة اترفعت واتحفظت ✅");
+      alert("الصورة اترفعت واتحفظت ✅ — اسمها: " + c.image_name);
     };
     img.src = reader.result;
   };
@@ -92,7 +93,7 @@ function addCategory(){
   const name = document.getElementById("cName").value.trim();
   if(!name){ alert("اكتب اسم القسم الأول."); return; }
   const id = "cat-" + Date.now().toString().slice(-6);
-  DATA.categories.push({ id, name, icon: document.getElementById("cIcon").value.trim()||"📁", image: document.getElementById("cImg").value.trim()||undefined, description: document.getElementById("cDesc").value.trim()||"", order: DATA.categories.length+1 });
+  DATA.categories.push({ id, name, icon: document.getElementById("cIcon").value.trim()||"📁", description: document.getElementById("cDesc").value.trim()||"", order: DATA.categories.length+1 });
   saveOverrides(); refreshCatSelects(); renderCatsAdmin();
   document.getElementById("cName").value=""; document.getElementById("cIcon").value=""; document.getElementById("cDesc").value="";
   alert("القسم اتضاف ✅ — روح تبويب البنود والأسعار وضيف خدماته.");
