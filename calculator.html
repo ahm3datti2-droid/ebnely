@@ -6,21 +6,75 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="site"><div class="wrap">
+<header class="site no-print"><div class="wrap">
   <a class="logo" href="index.html"><b>Ebnely</b><span>ابنيلي</span></a>
   <nav><a href="index.html">الرئيسية</a><a href="admin.html">الأدمن</a></nav>
 </div></header>
-<main class="container"><section class="section">
+
+<main class="container"><section class="section no-print">
   <h2>احسب تكلفة شقتك</h2>
-  <div class="notice"><b>الحاسبة الكاملة في المرحلة 3.</b><br>
-  اللي شغال دلوقتي: المرحلة 1 — هيكل المشروع + قاعدة البيانات + الأسعار التجريبية + لوحة الأدمن.<br>
-  في المرحلة 3 هتدخل مساحة الشقة وعدد الأوض والحمامات والمستوى، والحاسبة تطلّع تكلفة تقريبية لكل بند وإجمالي، وتقدر تشيل/تضيف بنود، وتبعت عرض السعر واتساب أو PDF.<br>
-  لما تقولّي "تمام" على المرحلة 1، أبدأ المرحلة 2 (صفحات العميل)، وبعدها المرحلة 3.</div>
-  <a class="btn" href="index.html">تصفح الأسعار دلوقتي ←</a>
-</section></main>
-<a id="waFloat" class="whatsapp-float" href="#" target="_blank">✆</a>
-<footer><div class="container"><b>Ebnely — ابنيلي</b></div></footer>
-<script src="js/config.js"></script><script src="js/data.js"></script>
-<script>document.getElementById("waFloat").href = waLink("سلام، عايز أحسب تكلفة تشطيب شقتي من Ebnely");</script>
+  <p class="muted">دخّل بيانات شقتك، والحاسبة تحسب لك تكلفة تقريبية لكل بند من أسعار الموقع — وتقدر تعدّل أي كمية أو تشيل/تضيف بنود بنفسك.</p>
+
+  <div class="card">
+    <div class="row">
+      <div><label>مساحة الشقة (م²)</label><input id="cArea" type="number" min="20" value="100"></div>
+      <div><label>عدد الأوض</label><input id="cRooms" type="number" min="0" value="3"></div>
+    </div>
+    <div class="row">
+      <div><label>عدد الحمامات</label><input id="cBaths" type="number" min="1" value="2"></div>
+      <div><label>اسمك (اختياري)</label><input id="cName" placeholder="مثال: أحمد"></div>
+    </div>
+    <label>تليفونك (اختياري — عشان نرد عليك)</label><input id="cPhone" placeholder="01xxxxxxxxx">
+    <label>المستوى</label>
+    <div class="levels" id="levels">
+      <button data-level="economy">اقتصادي</button>
+      <button data-level="medium" class="active">متوسط</button>
+      <button data-level="lux">لوكس</button>
+      <button data-level="super_lux">سوبر لوكس</button>
+    </div>
+  </div>
+
+  <h3 style="margin-top:20px">البنود — <span id="resCount"></span> • <span id="resMeta"></span></h3>
+  <p class="muted">شيل علامة الصح من أي بند عشان يتشال من الحسبة، وعدّل الكمية من الخانة. الكميات بتتحسب تلقائياً من المساحة والأوض والحمامات.</p>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table><tr><th></th><th>البند</th><th>الكمية</th><th>الإجمالي</th></tr><tbody id="rows"></tbody></table>
+  </div>
+
+  <div class="row" style="margin-top:12px">
+    <div><label>إضافة بند</label><select id="addItem"></select></div>
+    <div><label>&nbsp;</label><button class="btn dark" style="width:100%" onclick="addSelectedItem()">+ إضافة البند للحسبة</button></div>
+  </div>
+
+  <div class="card" style="margin-top:16px;background:var(--dark);color:#fff">
+    <div style="font-size:15px">الإجمالي التقريبي</div>
+    <div style="font-size:28px;font-weight:800"><span id="totalMin"></span> – <span id="totalMax"></span> ج.م</div>
+    <div style="color:#D8D2C2">المتوسط التقريبي: <span id="totalMid"></span> ج.م — أسعار تقريبية استرشادية، والسعر النهائي بعد المعاينة.</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn" id="waBtn" target="_blank" href="#" onclick="sendWhatsApp(); return false;">ابعت عرض السعر واتساب</a>
+      <button class="btn ghost" onclick="printQuote()">تحميل عرض السعر PDF</button>
+    </div>
+  </div>
+</section>
+
+<!-- عرض السعر للطباعة / PDF -->
+<section id="quote" class="section">
+  <div class="card">
+    <div style="text-align:center;line-height:1.2">
+      <div style="font-family:Georgia,serif;font-size:32px;font-weight:700">Ebnely</div>
+      <div style="font-size:20px;color:var(--accent)">ابنيلي</div>
+      <div class="muted">دليل أسعار تشطيب العقارات في مصر — عرض سعر تقريبي</div>
+    </div>
+    <p id="qMeta" style="text-align:center"></p>
+    <table><tr><th>البند</th><th>الكمية</th><th>الإجمالي</th></tr><tbody id="qRows"></tbody></table>
+    <p style="font-size:18px">الإجمالي التقريبي: <b id="qTotal"></b></p>
+    <p class="muted">أسعار تقريبية استرشادية — السعر النهائي يتأكد بعد المعاينة. للتواصل واتساب: <span id="qWa"></span></p>
+  </div>
+</section>
+</main>
+
+<a id="waFloat" class="whatsapp-float no-print" href="#" target="_blank">✆</a>
+<footer class="no-print"><div class="container"><b>Ebnely — ابنيلي</b></div></footer>
+<script src="js/config.js"></script><script src="js/data.js"></script><script src="js/calculator.js"></script>
+<script>document.getElementById("qWa").textContent = (window.EBNELY_CONFIG && window.EBNELY_CONFIG.whatsapp) ? ("0" + window.EBNELY_CONFIG.whatsapp.slice(2)) : "—";</script>
 </body>
 </html>
