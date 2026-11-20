@@ -35,22 +35,29 @@ function refreshCatSelects(){
   document.getElementById("bCat").innerHTML = opts;
 }
 function renderCatsAdmin(){
-  document.getElementById("catsList").innerHTML = DATA.categories.map(c=>{
+  document.getElementById("catsList").innerHTML = DATA.categories.map((c, idx)=>{
     const n = DATA.items.filter(i=>i.category===c.id).length;
     const preview = c.image ? `<img src="${c.image}" alt="">` : `<div style="font-size:36px">${c.icon||"📁"}</div>`;
+    const esc = s => (s||"").replace(/"/g, "&quot;");
     return `<div class="cat-edit">
       <div style="display:flex;gap:10px;align-items:center">${preview}
-        <div><b>${c.name}</b> <span class="muted">— ${n} خدمات</span><br><span class="muted">${c.description||""}</span></div>
+        <div><b>${c.name}</b> <span class="muted">— ${n} خدمات • ترتيبه ${idx+1} من ${DATA.categories.length}</span><br><span class="muted">${c.description||""}</span></div>
       </div>
       <div class="row" style="margin-top:10px">
-        <div><label>الأيقونة (إيموجي)</label><input id="icon-${c.id}" value="${c.icon||""}" placeholder="🏗️"></div>
-        <div><label>اسم الصورة</label><input id="imgname-${c.id}" value="${c.image_name||""}" placeholder="مثال: سباكة.jpg"></div>
+        <div><label>اسم القسم</label><input id="name-${c.id}" value="${esc(c.name)}"></div>
+        <div><label>الأيقونة (إيموجي)</label><input id="icon-${c.id}" value="${esc(c.icon)}" placeholder="🏗️"></div>
+      </div>
+      <label>وصف القسم</label><input id="desc-${c.id}" value="${esc(c.description)}">
+      <div class="row" style="margin-top:10px">
+        <div><label>اسم الصورة</label><input id="imgname-${c.id}" value="${esc(c.image_name)}" placeholder="مثال: سباكة.jpg"></div>
+        <div><label>ترتيب القسم في الرئيسية</label><div style="display:flex;gap:8px"><button class="btn small ghost" onclick="moveCat('${c.id}',-1)">↑ فوق</button><button class="btn small ghost" onclick="moveCat('${c.id}',1)">↓ تحت</button></div></div>
       </div>
       <label>صورة القسم — من موبايلك (مش لينك)</label>
       <input type="file" accept="image/*" onchange="catImagePicked(event,'${c.id}')">
       ${c.image ? `<p class="muted">الصورة الحالية: ${c.image_name||"صورة مرفوعة"} — دوس "اختار ملف" فوق عشان تغيّرها بصورة جديدة من موبايلك.</p>` : `<p class="muted">لسه مفيش صورة — اختار صورة من موبايلك وهتظهر في الرئيسية بدل الأيقونة. الصورة بتتصغّر تلقائياً (أقصى 600px).</p>`}
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn small" onclick="saveCat('${c.id}')">حفظ الأيقونة واسم الصورة</button>
+        <button class="btn small" onclick="saveCat('${c.id}')">💾 حفظ كل تعديلات القسم</button>
+        <button class="btn small dark" onclick="editItemsOfCat('${c.id}')">بنود القسم (${n}) — تعديل خدماته</button>
         <button class="btn small ghost" onclick="removeCatImage('${c.id}')">إزالة الصورة (ارجع للأيقونة)</button>
         <button class="btn small ghost" onclick="delCategory('${c.id}')">حذف القسم</button>
       </div>
@@ -59,15 +66,33 @@ function renderCatsAdmin(){
 }
 function saveCat(id){
   const c = DATA.categories.find(x=>x.id===id); if(!c) return;
+  const nm = document.getElementById("name-"+id).value.trim();
+  if(!nm){ alert("اسم القسم مينفعش يبقى فاضي."); return; }
+  c.name = nm;
+  c.description = document.getElementById("desc-"+id).value.trim();
   c.icon = document.getElementById("icon-"+id).value.trim() || "📁";
-  const nm = document.getElementById("imgname-"+id).value.trim();
-  if(nm) c.image_name = nm; else delete c.image_name;
-  saveOverrides(); renderCatsAdmin();
-  alert("اتحفظت أيقونة/اسم صورة قسم " + c.name + " ✅ — شوفها في الرئيسية.");
+  const imn = document.getElementById("imgname-"+id).value.trim();
+  if(imn) c.image_name = imn; else delete c.image_name;
+  saveOverrides(); refreshCatSelects(); renderCatsAdmin();
+  alert("اتحفظ كل تعديل قسم " + c.name + " ✅ — الاسم والوصف والأيقونة والصورة.");
+}
+function moveCat(id, dir){
+  const i = DATA.categories.findIndex(x=>x.id===id); if(i<0) return;
+  const j = i + dir; if(j<0 || j>=DATA.categories.length) return;
+  const tmp = DATA.categories[i]; DATA.categories[i] = DATA.categories[j]; DATA.categories[j] = tmp;
+  DATA.categories.forEach((c, k)=>c.order = k+1);
+  saveOverrides(); refreshCatSelects(); renderCatsAdmin();
+}
+function editItemsOfCat(id){
+  showTab("items");
+  document.getElementById("fCat").value = id;
+  document.getElementById("fQ").value = "";
+  renderItems();
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 function removeCatImage(id){
   const c = DATA.categories.find(x=>x.id===id); if(!c) return;
-  delete c.image; saveOverrides(); renderCatsAdmin();
+  delete c.image; delete c.image_name; saveOverrides(); renderCatsAdmin();
 }
 function catImagePicked(ev, id){
   const f = ev.target.files && ev.target.files[0]; if(!f) return;
