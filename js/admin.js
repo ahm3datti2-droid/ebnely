@@ -37,16 +37,62 @@ function refreshCatSelects(){
 function renderCatsAdmin(){
   document.getElementById("catsList").innerHTML = DATA.categories.map(c=>{
     const n = DATA.items.filter(i=>i.category===c.id).length;
-    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)">
-      <span>${c.icon||"📁"} <b>${c.name}</b> <span class="muted">— ${n} خدمات</span><br><span class="muted">${c.description||""}</span></span>
-      <button class="btn small ghost" onclick="delCategory('${c.id}')">حذف</button></div>`;
+    const preview = c.image ? `<img src="${c.image}" alt="">` : `<div style="font-size:36px">${c.icon||"📁"}</div>`;
+    return `<div class="cat-edit">
+      <div style="display:flex;gap:10px;align-items:center">${preview}
+        <div><b>${c.name}</b> <span class="muted">— ${n} خدمات</span><br><span class="muted">${c.description||""}</span></div>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <div><label>الأيقونة (إيموجي)</label><input id="icon-${c.id}" value="${c.icon||""}" placeholder="🏗️"></div>
+        <div><label>رابط صورة القسم</label><input id="img-${c.id}" value="${(c.image||"").startsWith("data:")?"":(c.image||"")}" placeholder="https://… أو سيبه فاضي"></div>
+      </div>
+      <label>أو ارفع صورة من موبايلك</label>
+      <input type="file" accept="image/*" onchange="catImagePicked(event,'${c.id}')">
+      <p class="muted">الصورة بتتصغّر تلقائياً (أقصى 600px) عشان تتحفظ بسرعة. لو رفعت صورة، هي اللي هتظهر في الرئيسية بدل الأيقونة.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn small" onclick="saveCat('${c.id}')">حفظ الأيقونة والصورة</button>
+        <button class="btn small ghost" onclick="removeCatImage('${c.id}')">إزالة الصورة (ارجع للأيقونة)</button>
+        <button class="btn small ghost" onclick="delCategory('${c.id}')">حذف القسم</button>
+      </div>
+    </div>`;
   }).join("");
+}
+function saveCat(id){
+  const c = DATA.categories.find(x=>x.id===id); if(!c) return;
+  c.icon = document.getElementById("icon-"+id).value.trim() || "📁";
+  const url = document.getElementById("img-"+id).value.trim();
+  if(url) c.image = url;
+  saveOverrides(); renderCatsAdmin();
+  alert("اتحفظت أيقونة/صورة قسم " + c.name + " ✅ — شوفها في الرئيسية.");
+}
+function removeCatImage(id){
+  const c = DATA.categories.find(x=>x.id===id); if(!c) return;
+  delete c.image; saveOverrides(); renderCatsAdmin();
+}
+function catImagePicked(ev, id){
+  const f = ev.target.files && ev.target.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const max = 600, scale = Math.min(1, max / Math.max(img.width, img.height));
+      const cv = document.createElement("canvas");
+      cv.width = Math.round(img.width*scale); cv.height = Math.round(img.height*scale);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      const c = DATA.categories.find(x=>x.id===id); if(!c) return;
+      c.image = cv.toDataURL("image/jpeg", 0.82);
+      saveOverrides(); renderCatsAdmin();
+      alert("الصورة اترفعت واتحفظت ✅");
+    };
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(f);
 }
 function addCategory(){
   const name = document.getElementById("cName").value.trim();
   if(!name){ alert("اكتب اسم القسم الأول."); return; }
   const id = "cat-" + Date.now().toString().slice(-6);
-  DATA.categories.push({ id, name, icon: document.getElementById("cIcon").value.trim()||"📁", description: document.getElementById("cDesc").value.trim()||"", order: DATA.categories.length+1 });
+  DATA.categories.push({ id, name, icon: document.getElementById("cIcon").value.trim()||"📁", image: document.getElementById("cImg").value.trim()||undefined, description: document.getElementById("cDesc").value.trim()||"", order: DATA.categories.length+1 });
   saveOverrides(); refreshCatSelects(); renderCatsAdmin();
   document.getElementById("cName").value=""; document.getElementById("cIcon").value=""; document.getElementById("cDesc").value="";
   alert("القسم اتضاف ✅ — روح تبويب البنود والأسعار وضيف خدماته.");

@@ -27,6 +27,9 @@ nav a:hover{opacity:1;text-decoration:underline}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
 .cat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:block}
 .cat-card .ico{font-size:28px}
+.cat-img{width:64px;height:64px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.cat-edit{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:#fff}
+.cat-edit img{width:72px;height:72px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 .cat-card h3{margin:6px 0 2px;font-size:17px}
 .cat-card p{margin:0;color:var(--muted);font-size:14px}
 .cat-card .count{margin-top:8px;font-size:13px;color:var(--accent);font-weight:700}

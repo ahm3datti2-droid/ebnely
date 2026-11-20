@@ -20,8 +20,9 @@ function renderCats(cats, q) {
   const list = cats.filter(c => !q || c.name.includes(q) || c.description.includes(q));
   el.innerHTML = list.map(c => {
     const n = DATA.items.filter(i => i.category === c.id).length;
+    const thumb = c.image ? `<img class="cat-img" src="${c.image}" alt="${c.name}">` : `<div class="ico">${c.icon||"📁"}</div>`;
     return `<a class="cat-card" href="category.html?cat=${c.id}">
-      <div class="ico">${c.icon}</div><h3>${c.name}</h3><p>${c.description}</p>
+      ${thumb}<h3>${c.name}</h3><p>${c.description}</p>
       <div class="count">${n} بنود — اضغط لعرض الأسعار</div></a>`;
   }).join("") || `<div class="card">مفيش نتيجة مطابقة لـ "${q}"</div>`;
 }

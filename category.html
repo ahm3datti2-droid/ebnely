@@ -32,7 +32,7 @@ async function init(){
   const cat = DATA.categories.find(c=>c.id===catId);
   if(!cat){document.getElementById("catName").textContent="القسم مش موجود";return;}
   document.title = cat.name + " — Ebnely | ابنيلي";
-  document.getElementById("catName").textContent = cat.icon+" "+cat.name;
+  document.getElementById("catName").innerHTML = (cat.image ? `<img class="cat-img" src="${cat.image}" alt="" style="vertical-align:middle"> ` : (cat.icon||"📁")+" ") + cat.name;
   document.getElementById("catDesc").textContent = cat.description;
   document.querySelectorAll("#levels button").forEach(b=>{
     if(b.dataset.level===level) b.classList.add("active"); else b.classList.remove("active");
