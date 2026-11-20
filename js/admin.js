@@ -9,7 +9,8 @@ function doLogin(){
 function doLogout(){ sessionStorage.removeItem("ebnely_admin"); location.reload(); }
 function showTab(t){
   document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active", b.dataset.tab===t));
-  ["items","bulk","settings","requests"].forEach(x=>document.getElementById("tab-"+x).classList.toggle("hidden", x!==t));
+  ["items","categories","bulk","settings","requests"].forEach(x=>document.getElementById("tab-"+x).classList.toggle("hidden", x!==t));
+  if(t==="categories") renderCatsAdmin();
 }
 async function showPanel(){
   document.getElementById("loginBox").classList.add("hidden");
@@ -21,12 +22,42 @@ async function showPanel(){
   document.getElementById("sWa").value = window.EBNELY_CONFIG.whatsapp || "";
   document.getElementById("fCat").onchange = renderItems;
   document.getElementById("fQ").oninput = renderItems;
-  renderItems();
+  renderItems(); renderCatsAdmin();
   const reqs = JSON.parse(localStorage.getItem("ebnely_requests")||"[]");
   document.getElementById("reqList").innerHTML = reqs.length ? reqs.map(r=>`<div class="card" style="margin-top:8px">${r}</div>`).join("") : "<p class='muted'>لا توجد طلبات بعد.</p>";
 }
 function saveOverrides(){
-  localStorage.setItem("ebnely_overrides", JSON.stringify({ items: DATA.items, settings: { whatsapp: window.EBNELY_CONFIG.whatsapp, appNameAr: window.EBNELY_CONFIG.appNameAr }, saved_at: new Date().toISOString().slice(0,10) }));
+  localStorage.setItem("ebnely_overrides", JSON.stringify({ items: DATA.items, categories: DATA.categories, settings: { whatsapp: window.EBNELY_CONFIG.whatsapp, appNameAr: window.EBNELY_CONFIG.appNameAr }, saved_at: new Date().toISOString().slice(0,10) }));
+}
+function refreshCatSelects(){
+  const opts = DATA.categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");
+  document.getElementById("fCat").innerHTML = opts;
+  document.getElementById("bCat").innerHTML = opts;
+}
+function renderCatsAdmin(){
+  document.getElementById("catsList").innerHTML = DATA.categories.map(c=>{
+    const n = DATA.items.filter(i=>i.category===c.id).length;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)">
+      <span>${c.icon||"📁"} <b>${c.name}</b> <span class="muted">— ${n} خدمات</span><br><span class="muted">${c.description||""}</span></span>
+      <button class="btn small ghost" onclick="delCategory('${c.id}')">حذف</button></div>`;
+  }).join("");
+}
+function addCategory(){
+  const name = document.getElementById("cName").value.trim();
+  if(!name){ alert("اكتب اسم القسم الأول."); return; }
+  const id = "cat-" + Date.now().toString().slice(-6);
+  DATA.categories.push({ id, name, icon: document.getElementById("cIcon").value.trim()||"📁", description: document.getElementById("cDesc").value.trim()||"", order: DATA.categories.length+1 });
+  saveOverrides(); refreshCatSelects(); renderCatsAdmin();
+  document.getElementById("cName").value=""; document.getElementById("cIcon").value=""; document.getElementById("cDesc").value="";
+  alert("القسم اتضاف ✅ — روح تبويب البنود والأسعار وضيف خدماته.");
+}
+function delCategory(id){
+  const n = DATA.items.filter(i=>i.category===id).length;
+  if(n>0 && !confirm(`القسم ده فيه ${n} خدمات — حذف القسم هيمسح خدماته كمان. متأكد؟`)) return;
+  if(n===0 && !confirm("متأكد تحذف القسم ده؟")) return;
+  DATA.categories = DATA.categories.filter(c=>c.id!==id);
+  DATA.items = DATA.items.filter(i=>i.category!==id);
+  saveOverrides(); refreshCatSelects(); renderCatsAdmin(); renderItems();
 }
 function renderItems(){
   const cat = document.getElementById("fCat").value;

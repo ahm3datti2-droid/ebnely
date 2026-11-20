@@ -27,6 +27,7 @@
     </div>
     <div class="tabs">
       <button data-tab="items" class="active" onclick="showTab('items')">البنود والأسعار</button>
+      <button data-tab="categories" onclick="showTab('categories')">الأقسام</button>
       <button data-tab="bulk" onclick="showTab('bulk')">تعديل أسعار بالجملة</button>
       <button data-tab="settings" onclick="showTab('settings')">الإعدادات</button>
       <button data-tab="requests" onclick="showTab('requests')">الطلبات</button>
@@ -36,7 +37,8 @@
       <div class="row"><div><label>القسم</label><select id="fCat"></select></div>
       <div><label>ابحث في البنود</label><input id="fQ" placeholder="مثال: بورسلين"></div></div>
       <div id="itemsList" style="margin-top:14px"></div>
-      <div class="card" style="margin-top:14px"><h3 style="margin-top:0">إضافة بند جديد</h3>
+      <div class="card" style="margin-top:14px"><h3 style="margin-top:0">إضافة خدمة / بند جديد</h3>
+        <p class="muted">اختار القسم من فوق، اكتب اسم الخدمة وسعرها، واضغط إضافة — هتظهر فوراً في صفحة القسم للعملاء.</p>
         <div class="row"><div><label>اسم البند</label><input id="nName"></div>
         <div><label>وحدة القياس</label><select id="nUnit"><option>م²</option><option>م.ط</option><option>نقطة</option><option>قطعة</option><option>مقطوعية</option></select></div></div>
         <label>وصف قصير</label><input id="nDesc">
@@ -44,6 +46,19 @@
         <div class="row"><div><input id="nMin" type="number" placeholder="من"></div><div><input id="nMax" type="number" placeholder="إلى"></div></div>
         <div style="margin-top:12px"><button class="btn" onclick="addItem()">إضافة البند</button></div>
         <p class="muted">باقي المستويات (متوسط/لوكس/سوبر لوكس) بتتحسب تلقائياً ×1.45 / ×2.1 / ×2.9 — وتقدر تعدّلها بعد كده من جدول البند.</p>
+      </div>
+    </div>
+
+    <div id="tab-categories" class="hidden">
+      <div class="card"><h3 style="margin-top:0">الأقسام — إضافة / حذف</h3>
+        <div id="catsList"></div>
+        <hr>
+        <h3>إضافة قسم جديد</h3>
+        <div class="row"><div><label>اسم القسم</label><input id="cName" placeholder="مثال: ستائر وديكور"></div>
+        <div><label>أيقونة (إيموجي)</label><input id="cIcon" placeholder="مثال: 🪟"></div></div>
+        <label>وصف قصير</label><input id="cDesc" placeholder="مثال: تركيب ستائر وديكورات">
+        <div style="margin-top:12px"><button class="btn" onclick="addCategory()">إضافة القسم</button></div>
+        <p class="muted">بعد ما تضيف القسم، روح تبويب "البنود والأسعار" واختاره من قائمة الأقسام وضيف خدماته.</p>
       </div>
     </div>
 
@@ -60,8 +75,8 @@
 
     <div id="tab-settings" class="hidden">
       <div class="card"><h3 style="margin-top:0">الإعدادات</h3>
-        <label>رقم الواتساب (صيغة دولية بدون + — مثال 2011117543009)</label>
-        <input id="sWa">
+        <label>رقم الواتساب (صيغة دولية بدون + — مثال 201xxxxxxxxx)</label>
+        <input id="sWa" placeholder="حط رقمك هنا — مفيش رقم محفوظ دلوقتي">
         <label>اسم التطبيق بالعربي</label>
         <input id="sName" value="ابنيلي">
         <label>باسورد الأدمن الجديد</label>
