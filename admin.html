@@ -22,8 +22,12 @@
   </div>
 
   <div id="panel" class="hidden">
-    <div class="admin-bar card"><b>أهلاً يا أدمن ✅</b> — التعديلات بتتحفظ في جهازك فوراً، وبتظهر للزوار على نفس الجهاز. للنشر للكل اضغط "تصدير JSON" من الأسفل وابعت الملف ليّا أرفعه على GitHub — وفي المرحلة 4 هنوصّل الحفظ المباشر لقاعدة البيانات.
-      <button class="btn small dark" style="margin-inline-start:8px" onclick="doLogout()">خروج</button>
+    <div class="admin-bar card"><b>أهلاً يا أدمن ✅</b> — أي تعديل بتعمله بيتحفظ في جهازك فوراً. عشان يظهر لكل الزوار دوس زرار النشر — هيرفع الأسعار على GitHub والموقع هيتحدث لوحده خلال دقيقة تقريباً.
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn" id="publishBtn" onclick="publishAll()">☁️ انشر التعديلات للكل</button>
+        <button class="btn small dark" onclick="doLogout()">خروج</button>
+      </div>
+      <p id="saveStatus" class="muted" style="margin:8px 0 0">لسه مفيش تعديلات في الجلسة دي.</p>
     </div>
     <div class="tabs">
       <button data-tab="items" class="active" onclick="showTab('items')">البنود والأسعار</button>
@@ -85,9 +89,9 @@
         <div style="margin-top:12px"><button class="btn" onclick="saveSettings()">حفظ الإعدادات</button></div>
         <p class="muted" id="setMsg"></p>
         <hr>
-        <h3>تصدير / استيراد</h3>
-        <button class="btn dark" onclick="exportJSON()">تصدير JSON (للنشر للكل)</button>
-        <p class="muted">الملف اللي هينزل اسمه ebnely-prices.json — ابعتهولي وأنا أرفعه على GitHub وVercel في دقيقة، والأسعار الجديدة تظهر للكل.</p>
+        <h3>تصدير نسخة احتياطية</h3>
+        <button class="btn dark" onclick="exportJSON()">تصدير JSON (نسخة احتياطية)</button>
+        <p class="muted">الملف اللي هينزل اسمه ebnely-prices.json — نسخة احتياطية من كل الأسعار والأقسام عندك. النشر للكل بقى من زرار "انشر التعديلات للكل" اللي فوق.</p>
       </div>
     </div>
 

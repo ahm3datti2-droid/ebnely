@@ -1,10 +1,45 @@
 // Ebnely — لوحة الأدمن
 let DATA = null;
+let ADMIN_PW = ""; // باسورد الجلسة — بيستخدم في النشر للكل (مش بيتخزن في localStorage)
 function pwOK(){ return (localStorage.getItem("ebnely_admin_password") || window.EBNELY_CONFIG.adminPassword); }
 function doLogin(){
   const v = document.getElementById("pw").value.trim();
-  if(v === pwOK()){ sessionStorage.setItem("ebnely_admin","1"); showPanel(); }
+  if(v === pwOK()){ ADMIN_PW = v; sessionStorage.setItem("ebnely_admin","1"); showPanel(); }
   else document.getElementById("loginErr").textContent = "الباسورد غلط — جرّب تاني.";
+}
+// تأكيد حفظ ظاهر على الصفحة (مش alert بس) — بتاريخ وساعة الحفظ
+function showSaved(msg){
+  const el = document.getElementById("saveStatus");
+  const t = new Date().toLocaleString("ar-EG", { hour: "2-digit", minute: "2-digit" });
+  if(el) el.textContent = "✅ " + msg + " — الساعة " + t;
+}
+async function publishAll(){
+  const btn = document.getElementById("publishBtn");
+  if(!ADMIN_PW) ADMIN_PW = prompt("اكتب باسورد الأدمن عشان النشر للكل:") || "";
+  if(!ADMIN_PW) return;
+  if(btn) btn.disabled = true;
+  const el = document.getElementById("saveStatus");
+  if(el) el.textContent = "⏳ جاري النشر للكل... استنى ثواني.";
+  try{
+    saveOverrides();
+    const r = await fetch("/api/save", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: ADMIN_PW, payload: { categories: DATA.categories, items: DATA.items,
+        settings: { whatsapp: window.EBNELY_CONFIG.whatsapp, appNameAr: window.EBNELY_CONFIG.appNameAr } } }) });
+    const j = await r.json().catch(()=>({}));
+    if(r.ok && j.ok){
+      localStorage.setItem("ebnely_last_publish", new Date().toISOString());
+      if(el) el.textContent = "✅ اتنشر للكل — الأسعار الجديدة هتظهر لكل الزوار خلال دقيقة تقريباً (Vercel بيعيد النشر).";
+    } else if(j.error === "wrong_password"){
+      if(el) el.textContent = "❌ الباسورد مش متطابق مع النشر — جرّب تدخل باسورد الأدمن الصح، أو ابعتلي أظبطه.";
+    } else if(j.error === "no_token"){
+      if(el) el.textContent = "❌ النشر لسه مظبطش من الإعدادات (مفيش توكن) — ابعتلي وأنا أكمّله.";
+    } else {
+      if(el) el.textContent = "❌ النشر فشل (" + (j.error || r.status) + ") — التعديلات محفوظة في جهازك، جرّب تاني بعد شوية أو ابعتلي.";
+    }
+  } catch(e){
+    if(el) el.textContent = "❌ مفيش اتصال — التعديلات محفوظة في جهازك، جرّب النشر تاني لما النت يرجع.";
+  }
+  if(btn) btn.disabled = false;
 }
 function doLogout(){ sessionStorage.removeItem("ebnely_admin"); location.reload(); }
 function showTab(t){
@@ -23,11 +58,21 @@ async function showPanel(){
   document.getElementById("fCat").onchange = renderItems;
   document.getElementById("fQ").oninput = renderItems;
   renderItems(); renderCatsAdmin();
+  const lp = localStorage.getItem("ebnely_last_publish");
+  if(lp) document.getElementById("saveStatus").textContent = "☁️ آخر نشر للكل كان: " + new Date(lp).toLocaleString("ar-EG");
   const reqs = JSON.parse(localStorage.getItem("ebnely_requests")||"[]");
   document.getElementById("reqList").innerHTML = reqs.length ? reqs.map(r=>`<div class="card" style="margin-top:8px">${r}</div>`).join("") : "<p class='muted'>لا توجد طلبات بعد.</p>";
 }
 function saveOverrides(){
-  localStorage.setItem("ebnely_overrides", JSON.stringify({ items: DATA.items, categories: DATA.categories, settings: { whatsapp: window.EBNELY_CONFIG.whatsapp, appNameAr: window.EBNELY_CONFIG.appNameAr }, saved_at: new Date().toISOString().slice(0,10) }));
+  try{
+    localStorage.setItem("ebnely_overrides", JSON.stringify({ items: DATA.items, categories: DATA.categories, settings: { whatsapp: window.EBNELY_CONFIG.whatsapp, appNameAr: window.EBNELY_CONFIG.appNameAr }, saved_at: new Date().toISOString().slice(0,10) }));
+    return true;
+  } catch(e){
+    // التخزين المحلي اتملى (غالباً صور أقسام كتير) — بلّغ الأدمن بدل ما التعديل يضيع في صمت
+    const el = document.getElementById("saveStatus");
+    if(el) el.textContent = "⚠️ التخزين المحلي في جهازك اتملى — التعديل الأخير متحفظش. شيل صورة قسم قديمة أو قلّل الصور، وبعدين جرّب تاني.";
+    return false;
+  }
 }
 function refreshCatSelects(){
   const opts = DATA.categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");
@@ -73,15 +118,16 @@ function saveCat(id){
   c.icon = document.getElementById("icon-"+id).value.trim() || "📁";
   const imn = document.getElementById("imgname-"+id).value.trim();
   if(imn) c.image_name = imn; else delete c.image_name;
-  saveOverrides(); refreshCatSelects(); renderCatsAdmin();
-  alert("اتحفظ كل تعديل قسم " + c.name + " ✅ — الاسم والوصف والأيقونة والصورة.");
+  if(saveOverrides()) showSaved("اتحفظ كل تعديل قسم " + c.name + " (الاسم والوصف والأيقونة والصورة) — دوس «انشر للكل» عشان يظهر للزوار");
+  refreshCatSelects(); renderCatsAdmin();
 }
 function moveCat(id, dir){
   const i = DATA.categories.findIndex(x=>x.id===id); if(i<0) return;
   const j = i + dir; if(j<0 || j>=DATA.categories.length) return;
   const tmp = DATA.categories[i]; DATA.categories[i] = DATA.categories[j]; DATA.categories[j] = tmp;
   DATA.categories.forEach((c, k)=>c.order = k+1);
-  saveOverrides(); refreshCatSelects(); renderCatsAdmin();
+  if(saveOverrides()) showSaved("اتغيّر ترتيب الأقسام — دوس «انشر للكل» عشان يظهر للزوار");
+  refreshCatSelects(); renderCatsAdmin();
 }
 function editItemsOfCat(id){
   showTab("items");
@@ -92,7 +138,9 @@ function editItemsOfCat(id){
 }
 function removeCatImage(id){
   const c = DATA.categories.find(x=>x.id===id); if(!c) return;
-  delete c.image; delete c.image_name; saveOverrides(); renderCatsAdmin();
+  delete c.image; delete c.image_name;
+  if(saveOverrides()) showSaved("اتشالت صورة قسم " + c.name + " — دوس «انشر للكل» عشان يظهر للزوار");
+  renderCatsAdmin();
 }
 function catImagePicked(ev, id){
   const f = ev.target.files && ev.target.files[0]; if(!f) return;
@@ -107,8 +155,8 @@ function catImagePicked(ev, id){
       const c = DATA.categories.find(x=>x.id===id); if(!c) return;
       c.image = cv.toDataURL("image/jpeg", 0.82);
       c.image_name = f.name || "صورة القسم";
-      saveOverrides(); renderCatsAdmin();
-      alert("الصورة اترفعت واتحفظت ✅ — اسمها: " + c.image_name);
+      if(saveOverrides()) showSaved("الصورة اترفعت واتحفظت — اسمها: " + c.image_name + " — دوس «انشر للكل» عشان تظهر للزوار");
+      renderCatsAdmin();
     };
     img.src = reader.result;
   };
@@ -119,9 +167,9 @@ function addCategory(){
   if(!name){ alert("اكتب اسم القسم الأول."); return; }
   const id = "cat-" + Date.now().toString().slice(-6);
   DATA.categories.push({ id, name, icon: document.getElementById("cIcon").value.trim()||"📁", description: document.getElementById("cDesc").value.trim()||"", order: DATA.categories.length+1 });
-  saveOverrides(); refreshCatSelects(); renderCatsAdmin();
+  if(saveOverrides()) showSaved("القسم اتضاف — روح تبويب البنود والأسعار وضيف خدماته، وبعدين دوس «انشر للكل»");
+  refreshCatSelects(); renderCatsAdmin();
   document.getElementById("cName").value=""; document.getElementById("cIcon").value=""; document.getElementById("cDesc").value="";
-  alert("القسم اتضاف ✅ — روح تبويب البنود والأسعار وضيف خدماته.");
 }
 function delCategory(id){
   const n = DATA.items.filter(i=>i.category===id).length;
@@ -129,7 +177,8 @@ function delCategory(id){
   if(n===0 && !confirm("متأكد تحذف القسم ده؟")) return;
   DATA.categories = DATA.categories.filter(c=>c.id!==id);
   DATA.items = DATA.items.filter(i=>i.category!==id);
-  saveOverrides(); refreshCatSelects(); renderCatsAdmin(); renderItems();
+  if(saveOverrides()) showSaved("القسم اتحذف — دوس «انشر للكل» عشان يختفي عند الزوار");
+  refreshCatSelects(); renderCatsAdmin(); renderItems();
 }
 function renderItems(){
   const cat = document.getElementById("fCat").value;
@@ -161,12 +210,15 @@ function saveItem(id){
   p.material_min=Math.round(mn*0.6); p.material_max=Math.round(mx*0.6);
   p.labor_min=mn-p.material_min; p.labor_max=mx-p.material_max;
   it.updated_at = new Date().toISOString().slice(0,10);
-  saveOverrides(); alert("اتحفظ ✅ — السعر الجديد ظاهر على الموقع في جهازك دلوقتي.");
+  if(saveOverrides()) showSaved("اتحفظ سعر " + it.name + " (متوسط " + mn + " – " + mx + " ج.م) — دوس «انشر للكل» عشان يظهر للزوار");
   renderItems();
 }
 function delItem(id){
   if(!confirm("متأكد تحذف البند ده؟")) return;
-  DATA.items = DATA.items.filter(i=>i.id!==id); saveOverrides(); renderItems();
+  const nm = (DATA.items.find(i=>i.id===id)||{}).name || "";
+  DATA.items = DATA.items.filter(i=>i.id!==id);
+  if(saveOverrides()) showSaved("البند " + nm + " اتحذف — دوس «انشر للكل» عشان يختفي عند الزوار");
+  renderItems();
 }
 function addItem(){
   const cat = document.getElementById("fCat").value;
@@ -180,7 +232,8 @@ function addItem(){
   DATA.items.push({ id, category: cat, name, description: document.getElementById("nDesc").value.trim()||name, unit: document.getElementById("nUnit").value, image:"images/placeholder.svg",
     levels:{ economy:mk(1), medium:mk(1.45), lux:mk(2.1), super_lux:mk(2.9) },
     notes:"السعر تقريبي وشامل الخامات والمصنعية.", updated_at:new Date().toISOString().slice(0,10) });
-  saveOverrides(); alert("البند اتضاف ✅"); renderItems();
+  if(saveOverrides()) showSaved("البند " + name + " اتضاف — دوس «انشر للكل» عشان يظهر للزوار");
+  renderItems();
 }
 function bulkUpdate(){
   const cat = document.getElementById("bCat").value;
@@ -196,7 +249,7 @@ function bulkUpdate(){
       it.updated_at=new Date().toISOString().slice(0,10); n++;
     });
   });
-  saveOverrides();
+  if(saveOverrides()) showSaved(`اتعدّل ${n} سعر في قسم ${DATA.categories.find(c=>c.id===cat).name} بنسبة ${pct}% — دوس «انشر للكل» عشان يظهر للزوار`);
   document.getElementById("bulkMsg").textContent = `تم ✅ — اتعدّل ${n} سعر في قسم ${DATA.categories.find(c=>c.id===cat).name} بنسبة ${pct}%`;
 }
 function saveSettings(){
@@ -204,9 +257,9 @@ function saveSettings(){
   const npw = document.getElementById("sPw").value.trim();
   if(wa) window.EBNELY_CONFIG.whatsapp = wa;
   if(document.getElementById("sName").value.trim()) window.EBNELY_CONFIG.appNameAr = document.getElementById("sName").value.trim();
-  if(npw){ localStorage.setItem("ebnely_admin_password", npw); window.EBNELY_CONFIG.adminPassword = npw; }
-  saveOverrides();
-  document.getElementById("setMsg").textContent = "اتحفظت الإعدادات ✅" + (npw ? " — الباسورد الجديد شغال من دلوقتي، احفظه كويس." : "");
+  if(npw){ localStorage.setItem("ebnely_admin_password", npw); window.EBNELY_CONFIG.adminPassword = npw; ADMIN_PW = npw; }
+  if(saveOverrides()) showSaved("اتحفظت الإعدادات — دوس «انشر للكل» عشان تظهر للزوار");
+  document.getElementById("setMsg").textContent = "اتحفظت الإعدادات ✅" + (npw ? " — الباسورد الجديد شغال من دلوقتي، احفظه كويس. ملحوظة: لو غيّرت الباسورد، النشر للكل هيحتاج تحديثه في إعدادات Vercel — ابعتلي." : "");
 }
 function exportJSON(){
   saveOverrides();
