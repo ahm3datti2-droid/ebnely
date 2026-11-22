@@ -2,8 +2,7 @@
   "app": "Ebnely",
   "app_ar": "ابنيلي",
   "currency": "ج.م",
-  "updated_at": "2026-11-20",
-  "note": "أسعار تقريبية استرشادية — آخر تحديث 2026-11-20",
+  "updated_at": "2026-11-22",
   "categories": [
     {
       "id": "plaster",
@@ -129,11 +128,11 @@
           "total_max": 138
         },
         "medium": {
-          "material_min": 94,
+          "material_min": 7439,
           "material_max": 120,
-          "labor_min": 63,
+          "labor_min": 4960,
           "labor_max": 80,
-          "total_min": 157,
+          "total_min": 12399,
           "total_max": 200
         },
         "lux": {
@@ -154,7 +153,7 @@
         }
       },
       "notes": "السعر تقريبي وشامل الخامات والمصنعية ما لم يُذكر خلاف ذلك — يُحدَّث حسب السوق.",
-      "updated_at": "2026-11-20"
+      "updated_at": "2026-11-22"
     },
     {
       "id": "item-02",
